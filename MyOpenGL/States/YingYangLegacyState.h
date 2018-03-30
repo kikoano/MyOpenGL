@@ -1,0 +1,18 @@
+#pragma once
+#include "State.h"
+
+class YingYangLegacyState : public State
+{
+private:
+	void drawLine(float x1, float y1, float x2, float y2);
+public:
+	void Init();
+
+	void Pause();
+	void Resume();
+
+	void HandleEvents(StateManager* stateManager, int key, int action);
+	void Update(StateManager* stateManager, double delta);
+	void Render(StateManager* stateManager);
+
+};
