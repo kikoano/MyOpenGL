@@ -122,6 +122,7 @@ namespace draw {
 		}
 	
 	}
+
 	static void polyederElementColor(int n, float x0, float y0, float r, float rr, std::vector<float> &vertices, std::vector<unsigned int> &indices, float * colors) {
 		/* x0, y0 centar, r radius na n-agolnikot */
 		float angle, alfa;
@@ -149,6 +150,46 @@ namespace draw {
 		n += 1;
 
 		while (n--) {
+
+			indices.push_back(i++);
+			vertices.push_back(x0 + r * cos(alfa));
+			vertices.push_back(y0 + rr * sin(alfa));
+			vertices.push_back(0.0f);
+
+			vertices.push_back(colors[0]);
+			vertices.push_back(colors[1]);
+			vertices.push_back(colors[2]);
+
+			alfa += angle;
+		}
+
+	}
+	static void polyederElementColorAngle(int n, float x0, float y0, float r, float rr, std::vector<float> &vertices, std::vector<unsigned int> &indices, float * colors, float start, float end) {
+		/* x0, y0 centar, r radius na n-agolnikot */
+		float angle, alfa;
+		angle =2 * M_PI / n; // najdi go agolot
+		alfa = start;
+		alfa += angle;
+		unsigned int max;
+		//najdi sleden indice
+		if (indices.empty())
+			max = 0;
+		else
+			max = *max_element(indices.begin(), indices.end()) + 1;
+
+		int i = max;
+
+		indices.push_back(i++);
+		vertices.push_back(x0);
+		vertices.push_back(y0);
+		vertices.push_back(0.0f);
+
+		vertices.push_back(colors[0]);
+		vertices.push_back(colors[1]);
+		vertices.push_back(colors[2]);
+
+
+		while (alfa <= end) {
 
 			indices.push_back(i++);
 			vertices.push_back(x0 + r * cos(alfa));
@@ -241,48 +282,6 @@ namespace draw {
 	}
 	static void polyederElement(int n, float x0, float y0, float r, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
 		polyederElement(n, x0, y0, r, r, vertices, indices);
-	}
-	static void polyederRingElementNotFixed(int n, float x0, float y0, float r, float rr, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
-		/* x0, y0 centar, r radius na n-agolnikot */
-		float angle, alfa=0;
-		angle = 2 * M_PI / n; // najdi go agolot
-		unsigned int max;
-		//najdi sleden indice
-		if (indices.empty())
-			max = 0;
-		else
-			max = *max_element(indices.begin(), indices.end()) +1;
-
-		int i = max;
-		int index = -2;
-		float dis = r;
-
-		while (n--) {
-
-			if (n % 2 == 0)
-				dis = r;
-			else
-				dis = rr;
-			if (index > 0) {
-				indices.push_back(i-2);
-				alfa += angle;
-				indices.push_back(i-1);
-				index = 0;	
-
-			}
-			else {
-				indices.push_back(i);
-				vertices.push_back(x0 + dis * cos(alfa));
-				vertices.push_back(y0 + dis * sin(alfa));
-				vertices.push_back(0.0f);
-				index++;
-				i++;
-			}
-			alfa += angle;
-	
-		}
-		//indices.erase(indices.begin(), indices.begin() + 6);
-	
 	}
 	static void polyederRingElement(int n, float x0, float y0, float r, float rr, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
 		float angle, alfa;

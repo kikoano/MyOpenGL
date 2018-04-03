@@ -111,6 +111,8 @@ GradientState::~GradientState() {
 	shader->Unbind();
 	delete shader;
 	glDeleteBuffers(1, &VAO);
+	vb->Unblind();
+	ib->Unblind();
 	delete vb;
 	delete ib;
 }

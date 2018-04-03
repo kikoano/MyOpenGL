@@ -22,8 +22,8 @@ void FinkiLogoState::Init()
 
 	//clear all binding
 	glBindVertexArray(0);
-	vb->Bind();
-	ib->Bind();
+	vb->Unblind();
+	ib->Unblind();
 
 }
 
@@ -67,6 +67,8 @@ FinkiLogoState::~FinkiLogoState() {
 	shader->Unbind();
 	delete shader;
 	glDeleteVertexArrays(1, &VAO);
+	vb->Unblind();
+	ib->Unblind();
 	delete vb;
 	delete ib;
 }

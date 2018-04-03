@@ -137,6 +137,7 @@
     <ClCompile Include="States\FlowerState.cpp" />
     <ClCompile Include="States\GradientState.cpp" />
     <ClCompile Include="States\HouseLegacyState.cpp" />
+    <ClCompile Include="States\PacmanState.cpp" />
     <ClCompile Include="States\QuardState.cpp" />
     <ClCompile Include="States\RombState.cpp" />
     <ClCompile Include="States\StateManager.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="States\FlowerState.h" />
     <ClInclude Include="States\GradientState.h" />
     <ClInclude Include="States\HouseLegacyState.h" />
+    <ClInclude Include="States\PacmanState.h" />
     <ClInclude Include="States\QuardState.h" />
     <ClInclude Include="States\RombState.h" />
     <ClInclude Include="States\State.h" />

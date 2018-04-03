@@ -173,7 +173,9 @@ FlowerState::~FlowerState() {
 	shader->Unbind();
 	delete shader;
 	glDeleteBuffers(1, &VAO);
+	vb->Unblind();
 	delete vb;
+	ib->Unblind();
 	delete ib;
 }
 

@@ -14,6 +14,7 @@
 #include "States\RombState.h"
 #include "States\FlowerState.h"
 #include "States\GradientState.h"
+#include "States\PacmanState.h"
 
 
 
@@ -158,6 +159,13 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		if (key == GLFW_KEY_7 && action == GLFW_PRESS) {
 			if (glVersion == 2)
 				stateManager.ChangeState(new GradientState());
+			else if (glVersion == 1) {
+				stateManager.ChangeState(new FlowerLegacyState());
+			}
+		}
+		if (key == GLFW_KEY_8 && action == GLFW_PRESS) {
+			if (glVersion == 2)
+				stateManager.ChangeState(new PacmanState());
 			else if (glVersion == 1) {
 				stateManager.ChangeState(new FlowerLegacyState());
 			}

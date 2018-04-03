@@ -62,5 +62,6 @@ WheelColorsState::~WheelColorsState() {
 	shader->Unbind();
 	delete shader;
 	glDeleteBuffers(1, &VAO);
+	vb->Unblind();
 	delete vb;
 }
