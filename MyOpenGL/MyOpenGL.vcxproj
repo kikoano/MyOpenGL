@@ -144,6 +144,7 @@
     <ClCompile Include="States\TabletLegacyState.cpp" />
     <ClCompile Include="States\TestLegacyState.cpp" />
     <ClCompile Include="States\TestState.cpp" />
+    <ClCompile Include="States\TextureTestState.cpp" />
     <ClCompile Include="States\TriangleState.cpp" />
     <ClCompile Include="States\WheelColorsState.cpp" />
     <ClCompile Include="States\YingYangLegacyState.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="States\TabletLegacyState.h" />
     <ClInclude Include="States\TestLegacyState.h" />
     <ClInclude Include="States\TestState.h" />
+    <ClInclude Include="States\TextureTestState.h" />
     <ClInclude Include="States\TriangleState.h" />
     <ClInclude Include="States\WheelColorsState.h" />
     <ClInclude Include="States\YingYangLegacyState.h" />
@@ -178,6 +180,10 @@
     <ClInclude Include="VertexArray.h" />
     <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="VertexBufferLayout.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\BasicColor.frag" />
+    <None Include="Shaders\BasicColor.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

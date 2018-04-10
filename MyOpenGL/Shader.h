@@ -4,15 +4,23 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+struct ShaderProgramSource {
+	std::string VertexSource;
+	std::string FragmentSouce;
+};
+
 class Shader {
 private:
 	unsigned int program;
+	ShaderProgramSource ParseShader(const std::string& filepath);
+	ShaderProgramSource ParseShader(const std::string& vertexPath, const std::string& fragmentPath);
 	unsigned int GetUniformLocation(const std::string& name);
 
 	unsigned int CompileShader(unsigned int type, const std::string& source);
 	void CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
 public:
 	Shader(const std::string& filepath);
+	Shader(const std::string& vertexPath, const std::string& fragmentPath);
 	Shader(const char *vertexShaderSource,const char *fragmentShaderSource);
 	~Shader();
 

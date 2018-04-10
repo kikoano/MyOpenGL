@@ -2,10 +2,6 @@
 
 
 
-VertexBufferLayout::VertexBufferLayout()
-{
-	//TODO
-}
 
 
 VertexBufferLayout::~VertexBufferLayout()

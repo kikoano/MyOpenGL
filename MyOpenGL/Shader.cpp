@@ -1,10 +1,77 @@
 #include "Shader.h"
 #include <glad/glad.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
+
+ShaderProgramSource Shader::ParseShader(const std::string& filepath) {
+	std::ifstream stream(filepath);
+
+	enum class ShaderType {
+		NONE = -1, VERTEX = 0, FRAGMENT = 1
+	};
+
+	std::string line;
+	std::stringstream ss[2];
+	ShaderType type = ShaderType::NONE;
+	while(getline(stream, line)) 
+	{
+		if (line.find("#shader") != std::string::npos)
+		{
+			if (line.find("vertex") != std::string::npos)
+				type = ShaderType::VERTEX;
+			else if (line.find("fragment") != std::string::npos)
+				type = ShaderType::FRAGMENT;
+		}
+		else {
+			ss[(int)type] << line << '\n';
+		}
+	}
+	return { ss[0].str(), ss[1].str() };
+}
+ShaderProgramSource Shader::ParseShader(const std::string& vertexPath, const std::string& fragmentPath) {
+
+	// 1. retrieve the vertex/fragment source code from filePath
+	std::string vertexCode;
+	std::string fragmentCode;
+	std::ifstream vShaderFile;
+	std::ifstream fShaderFile;
+	// ensure ifstream objects can throw exceptions:
+	vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+	fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+	try
+	{
+		// open files
+		vShaderFile.open(vertexPath);
+		fShaderFile.open(fragmentPath);
+		std::stringstream vShaderStream, fShaderStream;
+		// read file's buffer contents into streams
+		vShaderStream << vShaderFile.rdbuf();
+		fShaderStream << fShaderFile.rdbuf();
+		// close file handlers
+		vShaderFile.close();
+		fShaderFile.close();
+		// convert stream into string
+		vertexCode = vShaderStream.str();
+		fragmentCode = fShaderStream.str();
+	}
+	catch (std::ifstream::failure e)
+	{
+		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+	}
+
+	return { vertexCode.c_str(), fragmentCode.c_str() };
+}
 Shader::Shader(const std::string& filePath)
 {
-	//CreateShader();
+	ShaderProgramSource source = ParseShader(filePath);
+	CreateShader(source.VertexSource, source.FragmentSouce);
+}
+Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath)
+{
+	ShaderProgramSource source = ParseShader(vertexPath, fragmentPath);
+	CreateShader(source.VertexSource, source.FragmentSouce);
 }
 Shader::Shader(const char *vertexShaderSource, const char *fragmentShaderSource) {
 	CreateShader(vertexShaderSource, fragmentShaderSource);
