@@ -90,6 +90,9 @@
     <ClCompile Include="States\PacmanState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="States\TextureTestState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glitter.h">
@@ -167,5 +170,12 @@
     <ClInclude Include="States\PacmanState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="States\TextureTestState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\BasicColor.frag" />
+    <None Include="Shaders\BasicColor.vert" />
   </ItemGroup>
 </Project>
