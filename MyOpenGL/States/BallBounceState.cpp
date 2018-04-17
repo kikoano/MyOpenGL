@@ -5,7 +5,7 @@ void BallBounceState::Init()
 {
 	glEnable(GL_DEPTH_TEST);
 
-	draw::sphereTexture2(200, 300.0f, 300.0f, 50.0f, 50.0f, vertices, indices);
+	draw::sphere(200, 300.0f, 300.0f, 50.0f, 50.0f, vertices, indices);
 	shader = new Shader("BallBounce.vert", "BallBounce.frag");
 
 
@@ -96,7 +96,7 @@ void BallBounceState::Update(StateManager* stateManager, double delta)
 	model = glm::mat4(1.0f);
 	view = glm::mat4(1.0f);
 	projection = glm::mat4(1.0f);
-	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
+	model = glm::rotate(model, (float)glfwGetTime() / 2.0f, glm::vec3(0.5f, 1.0f, 0.0f));
 	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 	projection = glm::perspective(glm::radians(45.0f), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
 
