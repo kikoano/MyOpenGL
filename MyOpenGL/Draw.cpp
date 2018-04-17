@@ -310,7 +310,7 @@ namespace draw {
 			alfa += angle;
 		}
 	}
-	static void sphereTexture(int n, float x0, float y0, float r, float rr, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
+	static void sphere(int n, float x0, float y0, float r, float rr, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
 		int i, j;
 		int lats = 40;
 		int longs = 40;
@@ -335,22 +335,47 @@ namespace draw {
 				indices.push_back(indicator);
 				indicator++;
 
+
+				vertices.push_back(x * zr0 * x * zr0);
+				vertices.push_back(y * zr0 * y * zr0);
+				vertices.push_back(1.0f);
+
+				//vertices.push_back((1 / lats)*i);
+				//vertices.push_back((1 / longs)*j);
+
 				vertices.push_back(x * zr1);
 				vertices.push_back(y * zr1);
 				vertices.push_back(z1);
 				indices.push_back(indicator);
 				indicator++;
+
+				vertices.push_back(x * zr0 * x * zr0);
+				vertices.push_back(y * zr0 * y * zr0);
+				vertices.push_back(1.0f);
+
+				//vertices.push_back((1 / lats)*i);
+				//vertices.push_back((1 / longs)*j);
+			}
+		}
+	}
+	static void createUnitSphere(int dtheta, int dphi) {
+		int n;
+		int theta, phi;
+
+		for (theta -= 90; theta <= 90 - dtheta; theta += dtheta) {
+			for (phi = 0; phi <= 360; dphi += dphi) {
+
 			}
 		}
 	}
 	static void sphereTexture2(int n, float x0, float y0, float r, float rr, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
-		float res = 0.2f;
+		float res = 0.02f;
 		int i = 0;
-		for (float angle2 = -glm::pi<float>() / 2; angle2 <= glm::pi<float>() / 2; angle2 += res) {
-			for (float angle1 = 0.0f; angle1 <= glm::pi<float>() * 2; angle1 += res) {
+		for (float angle2 = -glm::half_pi<float>(); angle2 <= glm::half_pi<float>(); angle2 += res) {
+			for (float angle1 = 0.0f; angle1 <= glm::two_pi<float>(); angle1 += res) {
 
-				vertices.push_back(sin(angle2)); //y
 				vertices.push_back(cos(angle1)*cos(angle2)); //x
+				vertices.push_back(sin(angle2)); //y
 				vertices.push_back(sin(angle1)*cos(angle2)); //z
 				indices.push_back(i++);
 
@@ -358,8 +383,8 @@ namespace draw {
 				vertices.push_back(cos(angle1)*cos(angle2) *cos(angle1)*cos(angle2));
 				vertices.push_back(1.0f);
 
-				vertices.push_back(sin(angle2) + res); //y
 				vertices.push_back(cos(angle1)*cos(angle2) + res); //x
+				vertices.push_back(sin(angle2) + res); //y
 				vertices.push_back(sin(angle1)*cos(angle2) + res); //z
 				indices.push_back(i++);
 
@@ -367,8 +392,10 @@ namespace draw {
 				vertices.push_back(cos(angle1)*cos(angle2) *cos(angle1)*cos(angle2));
 				vertices.push_back(1.0f);
 			}
+			//}
 		}
 	}
+
 	/*  6  void drawSphere(double r, int lats, int longs) {
   7      int i, j;
   8      for(i = 0; i <= lats; i++) {
