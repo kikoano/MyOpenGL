@@ -1,10 +1,5 @@
 #include "Shader.h"
-#include <glad/glad.h>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-
-
+#include "main.h"
 ShaderProgramSource Shader::ParseShader(const std::string& filepath) {
 	std::ifstream stream(filepath);
 
@@ -31,7 +26,6 @@ ShaderProgramSource Shader::ParseShader(const std::string& filepath) {
 	return { ss[0].str(), ss[1].str() };
 }
 ShaderProgramSource Shader::ParseShader(const std::string& vertexPath, const std::string& fragmentPath) {
-
 	// 1. retrieve the vertex/fragment source code from filePath
 	std::string vertexCode;
 	std::string fragmentCode;
@@ -43,8 +37,8 @@ ShaderProgramSource Shader::ParseShader(const std::string& vertexPath, const std
 	try
 	{
 		// open files
-		vShaderFile.open(vertexPath);
-		fShaderFile.open(fragmentPath);
+		vShaderFile.open(RESOURCES_PATH + "Shaders\\" + vertexPath);
+		fShaderFile.open(RESOURCES_PATH + "Shaders\\" + fragmentPath);
 		std::stringstream vShaderStream, fShaderStream;
 		// read file's buffer contents into streams
 		vShaderStream << vShaderFile.rdbuf();
@@ -60,7 +54,6 @@ ShaderProgramSource Shader::ParseShader(const std::string& vertexPath, const std
 	{
 		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
 	}
-
 	return { vertexCode.c_str(), fragmentCode.c_str() };
 }
 Shader::Shader(const std::string& filePath)
@@ -68,13 +61,14 @@ Shader::Shader(const std::string& filePath)
 	ShaderProgramSource source = ParseShader(filePath);
 	CreateShader(source.VertexSource, source.FragmentSouce);
 }
-Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath)
-{
-	ShaderProgramSource source = ParseShader(vertexPath, fragmentPath);
+
+Shader::Shader(const std::string& vertexShaderSource, const std::string& fragmentShaderSource) {
+	ShaderProgramSource source;
+	if (vertexShaderSource[0] != '#') 
+		source = ParseShader(vertexShaderSource, fragmentShaderSource);
+	else
+		source = { vertexShaderSource, fragmentShaderSource };
 	CreateShader(source.VertexSource, source.FragmentSouce);
-}
-Shader::Shader(const char *vertexShaderSource, const char *fragmentShaderSource) {
-	CreateShader(vertexShaderSource, fragmentShaderSource);
 }
 
 Shader::~Shader(){
@@ -136,7 +130,11 @@ void Shader::SetUniform4f(const std::string& name, const glm::vec4 &value) {
 void Shader::SetUniformMatrix4fv(const std::string& name, const glm::mat4 &mat) {
 	glUniformMatrix4fv(GetUniformLocation(name), 1, false, &mat[0][0]);
 }
+void Shader::SetUniform1i(const std::string& name, int v0) {
+	glUniform1i(GetUniformLocation(name), v0);
+}
 unsigned int Shader::GetUniformLocation(const std::string& name) {
 	unsigned int location = glGetUniformLocation(program, name.c_str());
 	return location;
 }
+

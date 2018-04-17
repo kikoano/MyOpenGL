@@ -132,12 +132,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="States\BallBounceState.cpp" />
     <ClCompile Include="States\FinkiLogoState.cpp" />
     <ClCompile Include="States\FlowerLegacyState.cpp" />
     <ClCompile Include="States\FlowerState.cpp" />
     <ClCompile Include="States\GradientState.cpp" />
     <ClCompile Include="States\HouseLegacyState.cpp" />
     <ClCompile Include="States\PacmanState.cpp" />
+    <ClCompile Include="States\Projection3DState.cpp" />
     <ClCompile Include="States\QuardState.cpp" />
     <ClCompile Include="States\RombState.cpp" />
     <ClCompile Include="States\StateManager.cpp" />
@@ -159,12 +161,14 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="States\BallBounceState.h" />
     <ClInclude Include="States\FinkiLogoState.h" />
     <ClInclude Include="States\FlowerLegacyState.h" />
     <ClInclude Include="States\FlowerState.h" />
     <ClInclude Include="States\GradientState.h" />
     <ClInclude Include="States\HouseLegacyState.h" />
     <ClInclude Include="States\PacmanState.h" />
+    <ClInclude Include="States\Projection3DState.h" />
     <ClInclude Include="States\QuardState.h" />
     <ClInclude Include="States\RombState.h" />
     <ClInclude Include="States\State.h" />
@@ -182,8 +186,19 @@
     <ClInclude Include="VertexBufferLayout.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\BasicColor.frag" />
-    <None Include="Shaders\BasicColor.vert" />
+    <None Include="Resources\Shaders\BallBounce.frag" />
+    <None Include="Resources\Shaders\BallBounce.vert" />
+    <None Include="Resources\Shaders\BasicColor.frag" />
+    <None Include="Resources\Shaders\BasicColor.vert" />
+    <None Include="Resources\Shaders\BasicTexture.frag" />
+    <None Include="Resources\Shaders\BasicTexture.vert" />
+    <None Include="Resources\Shaders\Mix2Texture.frag" />
+    <None Include="Resources\Shaders\Projection3D.frag" />
+    <None Include="Resources\Shaders\Projection3D.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Textures\awesomeface.png" />
+    <Image Include="Resources\Textures\container.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

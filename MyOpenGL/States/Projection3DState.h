@@ -1,6 +1,6 @@
 #pragma once
 #include "State.h"
-class TextureTestState : public State
+class Projection3DState : public State
 {
 private:
 	unsigned int VAO;
@@ -11,6 +11,10 @@ private:
 	VertexBuffer* vb;
 	IndexBuffer* ib;
 	Shader* shader;
+	glm::mat4 model;
+	glm::mat4 view;
+	glm::mat4 projection;
+	std::vector<glm::vec3> cubePositions;
 public:
 	void Init();
 
@@ -20,6 +24,6 @@ public:
 	void HandleEvents(StateManager* stateManager, int key, int action);
 	void Update(StateManager* stateManager, double delta);
 	void Render(StateManager* stateManager);
-	~TextureTestState();
+	~Projection3DState();
 
 };

@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
-#include "../main.h"
 #include <glad/glad.h>
 #include "..//Draw.cpp"
+
 
 class State;
 class StateManager {
