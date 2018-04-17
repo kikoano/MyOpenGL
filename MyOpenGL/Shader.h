@@ -1,8 +1,12 @@
 #pragma once
 #include <string>
+#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 struct ShaderProgramSource {
 	std::string VertexSource;
@@ -20,8 +24,7 @@ private:
 	void CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
 public:
 	Shader(const std::string& filepath);
-	Shader(const std::string& vertexPath, const std::string& fragmentPath);
-	Shader(const char *vertexShaderSource,const char *fragmentShaderSource);
+	Shader(const std::string& vertexShaderSource, const std::string& fragmentShaderSource);
 	~Shader();
 
 	void Bind() const;
@@ -29,5 +32,6 @@ public:
 	
 	void SetUniform4f(const std::string& name, float f0, float f1, float f2, float f3);
 	void SetUniform4f(const std::string& name, const glm::vec4 &value);
+	void SetUniform1i(const std::string& name, int v0);
 	void SetUniformMatrix4fv(const std::string& name, const glm::mat4 &mat);
 };

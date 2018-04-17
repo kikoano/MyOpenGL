@@ -16,8 +16,11 @@
 #include "States\GradientState.h"
 #include "States\PacmanState.h"
 #include "States\TextureTestState.h"
+#include "States\Projection3DState.h"
+#include "States\BallBounceState.h"
 
-
+unsigned int WIDTH = 600;
+unsigned int HEIGHT = 600;
 StateManager stateManager;
 bool wireflame = false;
 int glVersion = 0;
@@ -27,10 +30,12 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 int main(int argc, char * argv[]) {
-
+	WIDTH = 600;
+	HEIGHT = 600;
 	// Choose OpenGL version
 	std::cout << "1.Legacy OpenGL" << std::endl;
-	std::cout << "2.Modern OpenGL" << std::endl;
+	std::cout << "2.Modern OpenGL 2D" << std::endl;
+	std::cout << "3.Modern OpenGL 3D" << std::endl;
 	while (glVersion == 0)
 		std::cin >> glVersion;
 	system("cls");
@@ -41,13 +46,21 @@ int main(int argc, char * argv[]) {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_ANY_PROFILE);
-		std::cout << "OpenGL 2.0 " << std::endl;
+		std::cout << "Legacy OpenGL" << std::endl;
 	}
 	else if (glVersion == 2) {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-		std::cout << "OpenGL 3.3 " << std::endl;
+		std::cout << "Modern OpenGL 2D" << std::endl;
+	}
+	else if (glVersion == 3) {
+		WIDTH = 1280;
+		HEIGHT = 720;
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		std::cout << "Modern OpenGL 3D" << std::endl;
 	}
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	//glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
@@ -109,6 +122,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	// make sure the viewport matches the new window dimensions; note that width and
 	// height will be significantly larger than specified on retina displays.
+	WIDTH = width;
+	HEIGHT = height;
 	glViewport(0, 0, width, height);
 }
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -127,12 +142,18 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			else if (glVersion == 1) {
 				stateManager.ChangeState(new TestLegacyState());
 			}
+			else if (glVersion == 3) {
+				stateManager.ChangeState(new Projection3DState());
+			}
 		}
 		if (key == GLFW_KEY_3 && action == GLFW_PRESS) {
 			if (glVersion == 2)
 				stateManager.ChangeState(new RombState());
 			else if (glVersion == 1) {
 				stateManager.ChangeState(new HouseLegacyState());
+			}
+			else if (glVersion == 3) {
+				stateManager.ChangeState(new BallBounceState());
 			}
 		}
 		if (key == GLFW_KEY_4 && action == GLFW_PRESS) {

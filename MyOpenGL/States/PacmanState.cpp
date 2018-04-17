@@ -1,5 +1,5 @@
 #include "PacmanState.h"
-
+#include <GLFW/glfw3.h>
 
 PacmanState::PacmanState() :
 	shader2(Shader(vertexShaderSource2, fragmentShaderSource2)),
@@ -154,7 +154,6 @@ void PacmanState::Update(StateManager* stateManager, double delta)
 		ghost.position.x += ghost.speed*delta;
 	
 	ghost.model = glm::translate(ghost.model, ghost.position);
-	std::cout <<"x: "<< ghost.position.x << "	y: " << ghost.flip << std::endl;
 
 	
 

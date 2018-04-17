@@ -93,6 +93,12 @@
     <ClCompile Include="States\TextureTestState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="States\Projection3DState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="States\BallBounceState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glitter.h">
@@ -173,9 +179,30 @@
     <ClInclude Include="States\TextureTestState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="States\Projection3DState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States\BallBounceState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\BasicColor.frag" />
-    <None Include="Shaders\BasicColor.vert" />
+    <None Include="Resources\Shaders\BasicColor.frag" />
+    <None Include="Resources\Shaders\BasicColor.vert" />
+    <None Include="Resources\Shaders\BasicTexture.vert" />
+    <None Include="Resources\Shaders\BasicTexture.frag" />
+    <None Include="Resources\Shaders\Mix2Texture.frag" />
+    <None Include="Resources\Shaders\Projection3D.frag" />
+    <None Include="Resources\Shaders\Projection3D.vert" />
+    <None Include="Resources\Shaders\BallBounce.vert" />
+    <None Include="Resources\Shaders\BallBounce.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Textures\awesomeface.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\container.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

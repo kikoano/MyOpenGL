@@ -1,6 +1,14 @@
 #pragma once
 #include <iostream>
+#include <string>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-static const int WIDTH = 600;
-static const int HEIGHT = 600;
+extern unsigned int WIDTH;
+extern unsigned int HEIGHT;
+static const std::string RESOURCES_PATH = "F:\\Visual Studio Projects\\MyOpenGL\\MyOpenGL\\Resources\\"; //"../../MyOpenGL/Resources/";
+static std::string getexepath()
+{
+	char result[MAX_PATH];
+	return std::string(result, GetModuleFileName(NULL, result, MAX_PATH));
+}
+
