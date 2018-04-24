@@ -196,6 +196,14 @@ void TestLegacyState::HandleKeyEvents(StateManager* stateManager, int key, int a
 
 }
 
+void TestLegacyState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void TestLegacyState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void TestLegacyState::Update(StateManager* stateManager, double delta)
 {
 	if (direction[0]) {

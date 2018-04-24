@@ -19,7 +19,7 @@
 #include "States\Projection3DState.h"
 #include "States\BallBounceState.h"
 #include "States\CameraState.h"
-
+#include "States\LightState.h"
 
 unsigned int WIDTH = 600;
 unsigned int HEIGHT = 600;
@@ -187,6 +187,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 				stateManager.ChangeState(new FinkiLogoState());
 			else if (glVersion == 1) {
 				stateManager.ChangeState(new YingYangLegacyState());
+			}
+			else if (glVersion == 3) {
+				stateManager.ChangeState(new LightState());
 			}
 		}
 		if (key == GLFW_KEY_6 && action == GLFW_PRESS) {

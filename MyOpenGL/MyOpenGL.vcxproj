@@ -141,6 +141,7 @@
     <ClCompile Include="States\FlowerState.cpp" />
     <ClCompile Include="States\GradientState.cpp" />
     <ClCompile Include="States\HouseLegacyState.cpp" />
+    <ClCompile Include="States\LightState.cpp" />
     <ClCompile Include="States\PacmanState.cpp" />
     <ClCompile Include="States\Projection3DState.cpp" />
     <ClCompile Include="States\QuardState.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="States\FlowerState.h" />
     <ClInclude Include="States\GradientState.h" />
     <ClInclude Include="States\HouseLegacyState.h" />
+    <ClInclude Include="States\LightState.h" />
     <ClInclude Include="States\PacmanState.h" />
     <ClInclude Include="States\Projection3DState.h" />
     <ClInclude Include="States\QuardState.h" />
@@ -194,6 +196,10 @@
     <ClInclude Include="VertexBufferLayout.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Shaders\2.2.basic_lighting.fs" />
+    <None Include="Resources\Shaders\2.2.basic_lighting.vs" />
+    <None Include="Resources\Shaders\2.2.lamp.fs" />
+    <None Include="Resources\Shaders\2.2.lamp.vs" />
     <None Include="Resources\Shaders\BallBounce.frag" />
     <None Include="Resources\Shaders\BallBounce.vert" />
     <None Include="Resources\Shaders\BasicColor.frag" />
@@ -203,6 +209,8 @@
     <None Include="Resources\Shaders\Mix2Texture.frag" />
     <None Include="Resources\Shaders\Projection3D.frag" />
     <None Include="Resources\Shaders\Projection3D.vert" />
+    <None Include="Resources\Shaders\Projection3DLight.frag" />
+    <None Include="Resources\Shaders\Projection3DLight.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\awesomeface.png" />

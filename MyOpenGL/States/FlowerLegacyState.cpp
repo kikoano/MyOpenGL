@@ -34,6 +34,14 @@ void FlowerLegacyState::HandleKeyEvents(StateManager* stateManager, int key, int
 
 }
 
+void FlowerLegacyState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void FlowerLegacyState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void FlowerLegacyState::Update(StateManager* stateManager, double delta)
 {
 

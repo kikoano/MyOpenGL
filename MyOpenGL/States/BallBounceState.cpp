@@ -42,6 +42,14 @@ void BallBounceState::HandleKeyEvents(StateManager* stateManager, int key, int a
 
 }
 
+void BallBounceState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void BallBounceState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void BallBounceState::Update(StateManager* stateManager, double delta)
 {
 	model = glm::mat4(1.0f);

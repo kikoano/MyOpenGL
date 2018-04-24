@@ -95,6 +95,14 @@ void QuardState::HandleKeyEvents(StateManager* stateManager, int key, int action
 
 }
 
+void QuardState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void QuardState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void QuardState::Update(StateManager* stateManager, double delta)
 {
 

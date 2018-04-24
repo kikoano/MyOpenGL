@@ -147,6 +147,14 @@ void Projection3DState::HandleKeyEvents(StateManager* stateManager, int key, int
 
 }
 
+void Projection3DState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void Projection3DState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void Projection3DState::Update(StateManager* stateManager, double delta)
 {
 	/*

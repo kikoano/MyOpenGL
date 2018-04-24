@@ -29,8 +29,14 @@ void TabletLegacyState::HandleKeyEvents(StateManager* stateManager, int key, int
 {
 
 
+}
 
+void TabletLegacyState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
 
+void TabletLegacyState::HandleScrollEvents(double xoffset, double yoffset)
+{
 }
 
 void TabletLegacyState::Update(StateManager* stateManager, double delta)

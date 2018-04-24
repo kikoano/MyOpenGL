@@ -36,6 +36,14 @@ void YingYangLegacyState::HandleKeyEvents(StateManager* stateManager, int key, i
 
 }
 
+void YingYangLegacyState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void YingYangLegacyState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void YingYangLegacyState::Update(StateManager* stateManager, double delta)
 {
 

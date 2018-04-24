@@ -96,6 +96,14 @@ void TextureTestState::HandleKeyEvents(StateManager* stateManager, int key, int 
 
 }
 
+void TextureTestState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void TextureTestState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void TextureTestState::Update(StateManager* stateManager, double delta)
 {
 

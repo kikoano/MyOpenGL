@@ -65,6 +65,14 @@ void FlowerState::HandleKeyEvents(StateManager* stateManager, int key, int actio
 
 }
 
+void FlowerState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void FlowerState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void FlowerState::Update(StateManager* stateManager, double delta)
 {
 

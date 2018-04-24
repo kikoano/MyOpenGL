@@ -35,6 +35,14 @@ void HouseLegacyState::HandleKeyEvents(StateManager* stateManager, int key, int 
 
 }
 
+void HouseLegacyState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void HouseLegacyState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void HouseLegacyState::Update(StateManager* stateManager, double delta)
 {
 
