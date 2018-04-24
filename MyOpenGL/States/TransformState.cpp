@@ -50,7 +50,7 @@ void TransformState::Resume()
 
 }
 
-void TransformState::HandleEvents(StateManager* stateManager, int key, int action)
+void TransformState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }

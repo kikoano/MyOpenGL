@@ -28,7 +28,7 @@ public:
 	void Pause();
 	void Resume();
 
-	void HandleEvents(StateManager* stateManager, int key, int action);
+	void HandleKeyEvents(StateManager* stateManager, int key, int action);
 	void Update(StateManager* stateManager, double delta);
 	void Render(StateManager* stateManager);
 	~TransformState();

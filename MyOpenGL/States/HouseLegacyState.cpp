@@ -27,7 +27,7 @@ void HouseLegacyState::Resume()
 
 }
 
-void HouseLegacyState::HandleEvents(StateManager* stateManager, int key, int action)
+void HouseLegacyState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 

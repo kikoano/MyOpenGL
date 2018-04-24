@@ -37,7 +37,7 @@ void FinkiLogoState::Resume()
 
 }
 
-void FinkiLogoState::HandleEvents(StateManager* stateManager, int key, int action)
+void FinkiLogoState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }

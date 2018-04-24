@@ -91,7 +91,7 @@ void TextureTestState::Resume()
 
 }
 
-void TextureTestState::HandleEvents(StateManager* stateManager, int key, int action)
+void TextureTestState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }

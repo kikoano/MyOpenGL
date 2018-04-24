@@ -14,7 +14,9 @@ public:
 	virtual void Pause() = 0;
 	virtual void Resume() = 0;
 
-	virtual void HandleEvents(StateManager* stateManager, int key, int action) = 0;
+	virtual void HandleKeyEvents(StateManager* stateManager, int key, int action) = 0;
+	virtual void HandleMouseEvents(double xoffset, double yoffset) {}
+	virtual void HandleScrollEvents(double xoffset, double yoffset) {}
 	virtual void Update(StateManager* stateManager, double delta) = 0;
 	virtual void Render(StateManager* stateManager) = 0;
 

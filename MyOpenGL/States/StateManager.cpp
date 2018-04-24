@@ -36,9 +36,19 @@ void StateManager::PopState()
 	}
 }
 
-void StateManager::HandleEvents(int key, int action)
+void StateManager::HandleKeyEvents(int key, int action)
 {
-	states.back()->HandleEvents(this, key, action);
+	states.back()->HandleKeyEvents(this, key, action);
+}
+
+void StateManager::HandleMouseEvents(double xoffset, double yoffset)
+{
+	states.back()->HandleMouseEvents(xoffset, yoffset);
+}
+
+void StateManager::HandleScrollEvents(double xoffset, double yoffset)
+{
+	states.back()->HandleMouseEvents(xoffset, yoffset);
 }
 
 void StateManager::Update(double delta)

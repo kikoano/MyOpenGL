@@ -16,7 +16,7 @@ void TestState::Resume()
 	
 }
 
-void TestState::HandleEvents(StateManager* stateManager, int key, int action)
+void TestState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 	
 }

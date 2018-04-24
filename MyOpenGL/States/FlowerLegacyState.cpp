@@ -29,7 +29,7 @@ void FlowerLegacyState::Resume()
 
 }
 
-void FlowerLegacyState::HandleEvents(StateManager* stateManager, int key, int action)
+void FlowerLegacyState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }

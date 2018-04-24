@@ -31,7 +31,7 @@ void YingYangLegacyState::Resume()
 
 }
 
-void YingYangLegacyState::HandleEvents(StateManager* stateManager, int key, int action)
+void YingYangLegacyState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }
