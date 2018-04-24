@@ -42,6 +42,14 @@ void FinkiLogoState::HandleKeyEvents(StateManager* stateManager, int key, int ac
 
 }
 
+void FinkiLogoState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void FinkiLogoState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void FinkiLogoState::Update(StateManager* stateManager, double delta)
 {
 

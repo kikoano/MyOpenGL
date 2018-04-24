@@ -108,6 +108,14 @@ void RombState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 
 }
 
+void RombState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void RombState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void RombState::Update(StateManager* stateManager, double delta)
 {
 

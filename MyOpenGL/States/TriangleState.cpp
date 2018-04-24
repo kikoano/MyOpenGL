@@ -84,6 +84,14 @@ void TriangleState::HandleKeyEvents(StateManager* stateManager, int key, int act
 
 }
 
+void TriangleState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void TriangleState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void TriangleState::Update(StateManager* stateManager, double delta)
 {
 

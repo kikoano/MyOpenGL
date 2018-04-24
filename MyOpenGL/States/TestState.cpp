@@ -21,6 +21,14 @@ void TestState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 	
 }
 
+void TestState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void TestState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void TestState::Update(StateManager* stateManager, double delta)
 {
 

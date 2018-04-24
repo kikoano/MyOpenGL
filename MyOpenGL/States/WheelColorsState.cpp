@@ -43,6 +43,14 @@ void WheelColorsState::HandleKeyEvents(StateManager* stateManager, int key, int 
 
 }
 
+void WheelColorsState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void WheelColorsState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void WheelColorsState::Update(StateManager* stateManager, double delta)
 {
 

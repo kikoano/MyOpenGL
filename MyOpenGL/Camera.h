@@ -1,13 +1,6 @@
 #pragma once
 #include "Entity.h"
 
-enum Camera_Movement {
-	FORWARD,
-	BACKWARD,
-	LEFT,
-	RIGHT
-};
-
 const float YAW = -90.0f;
 const float PITCH = 0.0f;
 const float SPEED = 2.5f;
@@ -28,7 +21,7 @@ private:
 	float movementSpeed;
 	float mouseSensitivity;
 	float zoom;
-	bool direction[4];
+	bool direction[4]{false};
 
 	void updateCameraVectors();
 

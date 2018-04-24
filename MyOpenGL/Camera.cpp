@@ -1,6 +1,6 @@
 #include "Camera.h"
 #include <GLFW\glfw3.h>
-Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) : Entity(position),up(up), yaw(yaw),pitch(pitch),
+Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) : Entity(position),worldUp(up), yaw(yaw),pitch(pitch),
 front(glm::vec3(0.0f, 0.0f, -1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVITY), zoom(ZOOM)
 {
 	updateCameraVectors();

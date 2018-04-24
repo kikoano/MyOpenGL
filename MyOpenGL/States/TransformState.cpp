@@ -55,6 +55,14 @@ void TransformState::HandleKeyEvents(StateManager* stateManager, int key, int ac
 
 }
 
+void TransformState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void TransformState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void TransformState::Update(StateManager* stateManager, double delta)
 {
 	glm::mat4 trans = glm::mat4(1.0f);

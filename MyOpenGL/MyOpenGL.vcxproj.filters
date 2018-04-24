@@ -111,6 +111,9 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="States\LightState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glitter.h">
@@ -209,6 +212,9 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="States\LightState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\BasicColor.frag" />
@@ -220,6 +226,12 @@
     <None Include="Resources\Shaders\Projection3D.vert" />
     <None Include="Resources\Shaders\BallBounce.vert" />
     <None Include="Resources\Shaders\BallBounce.frag" />
+    <None Include="Resources\Shaders\Projection3DLight.frag" />
+    <None Include="Resources\Shaders\Projection3DLight.vert" />
+    <None Include="Resources\Shaders\2.2.basic_lighting.fs" />
+    <None Include="Resources\Shaders\2.2.basic_lighting.vs" />
+    <None Include="Resources\Shaders\2.2.lamp.fs" />
+    <None Include="Resources\Shaders\2.2.lamp.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\awesomeface.png">

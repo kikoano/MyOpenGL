@@ -91,6 +91,14 @@ void GradientState::HandleKeyEvents(StateManager* stateManager, int key, int act
 
 }
 
+void GradientState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void GradientState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void GradientState::Update(StateManager* stateManager, double delta)
 {
 

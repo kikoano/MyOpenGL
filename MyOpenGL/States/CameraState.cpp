@@ -140,12 +140,13 @@ void CameraState::Render(StateManager* stateManager)
 
 	view = glm::mat4(1.0f);
 	projection = glm::mat4(1.0f);
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -.0f)); //camera->GetViewMatrix(); //glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+	view = camera->GetViewMatrix(); //camera->GetViewMatrix(); //glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 	projection = glm::perspective(glm::radians(camera->GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
 
 	shader->SetUniformMatrix4fv("projection", projection);
 	shader->SetUniformMatrix4fv("view", view);
 
+	va->Bind();
 	for (unsigned int i = 0; i < 10; i++)
 	{
 		// calculate the model matrix for each object and pass it to shader before drawing

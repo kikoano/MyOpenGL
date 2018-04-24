@@ -116,6 +116,14 @@ void PacmanState::HandleKeyEvents(StateManager* stateManager, int key, int actio
 	}
 }
 
+void PacmanState::HandleMouseEvents(double xoffset, double yoffset)
+{
+}
+
+void PacmanState::HandleScrollEvents(double xoffset, double yoffset)
+{
+}
+
 void PacmanState::Update(StateManager* stateManager, double delta)
 {
 	pacman.model = glm::mat4(1.0f);
