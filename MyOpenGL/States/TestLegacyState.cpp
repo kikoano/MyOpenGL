@@ -153,7 +153,7 @@ void TestLegacyState::Resume()
 
 }
 
-void TestLegacyState::HandleEvents(StateManager* stateManager, int key, int action)
+void TestLegacyState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 	if (key == GLFW_KEY_W) {

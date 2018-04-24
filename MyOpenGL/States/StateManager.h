@@ -2,6 +2,8 @@
 #include <vector>
 #include <glad/glad.h>
 #include "..//Draw.cpp"
+#include "../Renderer.h"
+#include "..//Texture.h"
 
 
 class State;
@@ -15,7 +17,9 @@ public:
 	void PushState(State* state);
 	void PopState();
 
-	void HandleEvents(int key, int action);
+	void HandleKeyEvents(int key, int action);
+	void HandleMouseEvents(double xoffset, double yoffset);
+	void HandleScrollEvents(double xoffset, double yoffset);
 	void Update(double delta);
 	void Render();
 

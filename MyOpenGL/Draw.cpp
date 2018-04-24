@@ -310,10 +310,8 @@ namespace draw {
 			alfa += angle;
 		}
 	}
-	static void sphere(int n, float x0, float y0, float r, float rr, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
+	static void sphere(float x0, float y0, float z0, int lats, int longs, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
 		int i, j;
-		int lats = 40;
-		int longs = 40;
 		int indicator = 0;
 		for (i = 0; i <= lats; i++) {
 			double lat0 = glm::pi<double>() * (-0.5 + (double)(i - 1) / lats);
@@ -340,8 +338,6 @@ namespace draw {
 				vertices.push_back(y * zr0 * y * zr0);
 				vertices.push_back(1.0f);
 
-				//vertices.push_back((1 / lats)*i);
-				//vertices.push_back((1 / longs)*j);
 
 				vertices.push_back(x * zr1);
 				vertices.push_back(y * zr1);
@@ -353,21 +349,10 @@ namespace draw {
 				vertices.push_back(y * zr0 * y * zr0);
 				vertices.push_back(1.0f);
 
-				//vertices.push_back((1 / lats)*i);
-				//vertices.push_back((1 / longs)*j);
 			}
 		}
 	}
-	static void createUnitSphere(int dtheta, int dphi) {
-		int n;
-		int theta, phi;
-
-		for (theta -= 90; theta <= 90 - dtheta; theta += dtheta) {
-			for (phi = 0; phi <= 360; dphi += dphi) {
-
-			}
-		}
-	}
+	
 	static void sphereTexture2(int n, float x0, float y0, float r, float rr, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
 		float res = 0.02f;
 		int i = 0;

@@ -103,7 +103,7 @@ void RombState::Resume()
 
 }
 
-void RombState::HandleEvents(StateManager* stateManager, int key, int action)
+void RombState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }

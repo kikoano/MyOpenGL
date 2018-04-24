@@ -25,7 +25,7 @@ void TabletLegacyState::Resume()
 
 }
 
-void TabletLegacyState::HandleEvents(StateManager* stateManager, int key, int action)
+void TabletLegacyState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 

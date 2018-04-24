@@ -60,7 +60,7 @@ void FlowerState::Resume()
 
 }
 
-void FlowerState::HandleEvents(StateManager* stateManager, int key, int action)
+void FlowerState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }

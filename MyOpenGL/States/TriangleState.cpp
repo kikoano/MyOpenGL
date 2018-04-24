@@ -79,7 +79,7 @@ void TriangleState::Resume()
 
 }
 
-void TriangleState::HandleEvents(StateManager* stateManager, int key, int action)
+void TriangleState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }

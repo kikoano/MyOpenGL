@@ -142,7 +142,7 @@ void Projection3DState::Resume()
 
 }
 
-void Projection3DState::HandleEvents(StateManager* stateManager, int key, int action)
+void Projection3DState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }

@@ -88,7 +88,7 @@ void PacmanState::Resume()
 
 }
 
-void PacmanState::HandleEvents(StateManager* stateManager, int key, int action)
+void PacmanState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 	if (key == GLFW_KEY_W) {
 		if (action == GLFW_PRESS)

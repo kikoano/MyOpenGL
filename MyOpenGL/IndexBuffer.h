@@ -11,6 +11,6 @@ public:
 	void Bind() const;
 	void Unblind() const;
 
-	unsigned int GetCount() const { return count; }
+	inline unsigned int GetCount() const { return count; }
 };
 

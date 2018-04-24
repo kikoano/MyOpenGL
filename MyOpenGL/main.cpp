@@ -18,6 +18,8 @@
 #include "States\TextureTestState.h"
 #include "States\Projection3DState.h"
 #include "States\BallBounceState.h"
+#include "States\CameraState.h"
+
 
 unsigned int WIDTH = 600;
 unsigned int HEIGHT = 600;
@@ -26,8 +28,14 @@ bool wireflame = false;
 int glVersion = 0;
 int currentState = 0;
 
+bool firstMouse = true;
+float lastX;
+float lastY;
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 int main(int argc, char * argv[]) {
 	WIDTH = 600;
@@ -62,6 +70,9 @@ int main(int argc, char * argv[]) {
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		std::cout << "Modern OpenGL 3D" << std::endl;
 	}
+
+	 lastX = WIDTH / 2.0f;
+	 lastY = HEIGHT / 2.0f;
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	//glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	auto window = glfwCreateWindow(WIDTH, HEIGHT, "OpenGL", nullptr, nullptr);
@@ -86,6 +97,11 @@ int main(int argc, char * argv[]) {
 	//fprintf(stderr, "OpenGL %s\n", glGetString(GL_VERSION));
 	// Set keys
 	glfwSetKeyCallback(window, key_callback);
+	glfwSetCursorPosCallback(window, mouse_callback);
+	glfwSetScrollCallback(window, scroll_callback);
+
+	// tell GLFW to capture our mouse
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	glfwSwapInterval(0); //vsync 1 on 0 off
 
@@ -162,6 +178,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			else if (glVersion == 1) {
 				stateManager.ChangeState(new TabletLegacyState());
 			}
+			else if (glVersion == 3) {
+				stateManager.ChangeState(new CameraState());
+			}
 		}
 		if (key == GLFW_KEY_5 && action == GLFW_PRESS) {
 			if (glVersion == 2)
@@ -208,5 +227,29 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		else
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
-	stateManager.HandleEvents(key, action);
+	stateManager.HandleKeyEvents(key, action);
+}
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	if (firstMouse)
+	{
+		lastX = xpos;
+		lastY = ypos;
+		firstMouse = false;
+	}
+
+	float xoffset = xpos - lastX;
+	float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+
+	lastX = xpos;
+	lastY = ypos;
+
+	stateManager.HandleMouseEvents(xoffset, yoffset);
+}
+
+// glfw: whenever the mouse scroll wheel scrolls, this callback is called
+// ----------------------------------------------------------------------
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	stateManager.HandleScrollEvents(xoffset, yoffset);
 }

@@ -38,7 +38,7 @@ void WheelColorsState::Resume()
 
 }
 
-void WheelColorsState::HandleEvents(StateManager* stateManager, int key, int action)
+void WheelColorsState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }

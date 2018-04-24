@@ -86,7 +86,7 @@ void GradientState::Resume()
 
 }
 
-void GradientState::HandleEvents(StateManager* stateManager, int key, int action)
+void GradientState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }

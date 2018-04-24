@@ -90,7 +90,7 @@ void QuardState::Resume()
 
 }
 
-void QuardState::HandleEvents(StateManager* stateManager, int key, int action)
+void QuardState::HandleKeyEvents(StateManager* stateManager, int key, int action)
 {
 
 }
