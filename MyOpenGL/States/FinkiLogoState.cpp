@@ -61,11 +61,11 @@ void FinkiLogoState::Render(StateManager* stateManager)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	shader->Bind();
-	shader->SetUniform4f("color", glm::vec4(0.19f, 0.19f, 0.51f, 1.0f));
+	shader->SetUniform4fv("color", glm::vec4(0.19f, 0.19f, 0.51f, 1.0f));
 	glBindVertexArray(VAO);
 	ib->Bind();
 	glDrawElements(GL_TRIANGLE_FAN, 6, GL_UNSIGNED_INT, nullptr);
-	shader->SetUniform4f("color", glm::vec4(0.16f, 0.58f, 0.84f, 1.0f));
+	shader->SetUniform4fv("color", glm::vec4(0.16f, 0.58f, 0.84f, 1.0f));
 	glDrawElements(GL_TRIANGLE_STRIP, indices.size() - 6, GL_UNSIGNED_INT, (void*)(6 * sizeof(unsigned int)));
 
 	
