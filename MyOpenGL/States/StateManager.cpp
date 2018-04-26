@@ -48,7 +48,7 @@ void StateManager::HandleMouseEvents(double xoffset, double yoffset)
 
 void StateManager::HandleScrollEvents(double xoffset, double yoffset)
 {
-	states.back()->HandleMouseEvents(xoffset, yoffset);
+	states.back()->HandleScrollEvents(xoffset, yoffset);
 }
 
 void StateManager::Update(double delta)

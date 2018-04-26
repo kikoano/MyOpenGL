@@ -114,6 +114,15 @@
     <ClCompile Include="States\LightState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="States\ColorCubeState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="States\FinkiLogoState3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="States\Pacman3DState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glitter.h">
@@ -215,6 +224,15 @@
     <ClInclude Include="States\LightState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="States\ColorCubeState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States\FinkiLogoState3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States\Pacman3DState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\BasicColor.frag" />
@@ -232,6 +250,10 @@
     <None Include="Resources\Shaders\2.2.basic_lighting.vs" />
     <None Include="Resources\Shaders\2.2.lamp.fs" />
     <None Include="Resources\Shaders\2.2.lamp.vs" />
+    <None Include="Resources\Shaders\ColorCube.frag" />
+    <None Include="Resources\Shaders\ColorCube.vert" />
+    <None Include="Resources\Shaders\Finki.frag" />
+    <None Include="Resources\Shaders\Finki.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\awesomeface.png">

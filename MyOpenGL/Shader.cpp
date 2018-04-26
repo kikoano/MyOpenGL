@@ -124,7 +124,7 @@ void Shader::CreateShader(const std::string& vertexShader, const std::string& fr
 void Shader::SetUniform4f(const std::string& name, float f0, float f1, float f2, float f3) {
 	glUniform4f(GetUniformLocation(name), f0, f1, f2, f3);
 }
-void Shader::SetUniform4f(const std::string& name, const glm::vec4 &value) {
+void Shader::SetUniform4fv(const std::string& name, const glm::vec4 &value) {
 	glUniform4fv(GetUniformLocation(name),1, &value[0]);
 }
 void Shader::SetUniformMatrix4fv(const std::string& name, const glm::mat4 &mat) {

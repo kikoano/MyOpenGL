@@ -352,6 +352,97 @@ namespace draw {
 			}
 		}
 	}
+	static void spherePacman(float x0, float y0, float z0, int lats, int longs, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
+		int i, j;
+		int indicator = 0;
+		for (i = 0; i <= lats; i++) {
+			double lat0 = glm::pi<double>() * (-0.5 + (double)(i - 1) / lats);
+			double z0 = sin(lat0);
+			double zr0 = cos(lat0);
+
+			double lat1 = glm::pi<double>() * (-0.5 + (double)i / lats);
+			double z1 = sin(lat1);
+			double zr1 = cos(lat1);
+
+			for (j = 0; j <= longs; j++) {
+				double lng = 2 * glm::pi<double>() * (double)(j - 1) / longs;
+				double x = cos(lng);
+				double y = sin(lng);
+
+				if (lng > glm::pi<double>()/2)
+					break;
+
+				vertices.push_back(x * zr0);
+				vertices.push_back(y * zr0);
+				vertices.push_back(z0);
+				indices.push_back(indicator);
+				indicator++;
+
+				vertices.push_back(x * zr1);
+				vertices.push_back(y * zr1);
+				vertices.push_back(z1);
+				indices.push_back(indicator);
+				indicator++;
+
+
+			}
+		}
+	}
+	static void sphere2(float x0, float y0, float z0, int lats, int longs, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
+		int i, j;
+		int indicator = 0;
+		for (i = 0; i <= lats; i++) {
+			double lat0 = glm::pi<double>() * (-0.5 + (double)(i - 1) / lats);
+			double z0 = sin(lat0);
+			double zr0 = cos(lat0);
+
+			double lat1 = glm::pi<double>() * (-0.5 + (double)i / lats);
+			double z1 = sin(lat1);
+			double zr1 = cos(lat1);
+
+			for (j = 0; j <= longs; j++) {
+				double lng = 2 * glm::pi<double>() * (double)(j - 1) / longs;
+				double x = cos(lng);
+				double y = sin(lng);
+
+				vertices.push_back(x * zr0);
+				vertices.push_back(y * zr0);
+				vertices.push_back(z0);
+				indices.push_back(indicator);
+				indicator++;
+
+				vertices.push_back(x * zr1);
+				vertices.push_back(y * zr1);
+				vertices.push_back(z1);
+				indices.push_back(indicator);
+				indicator++;
+
+
+			}
+		}
+	}
+	static void drawTorus(int numc,int numt,std::vector<float> &vertices, std::vector<unsigned int> &indices) {
+		int index = 0;
+		int i, j, k;
+		double s, t, x, y, z, twopi;
+		twopi = 2 * glm::pi<float>();
+		for (i = 0; i < numc; i++) {
+			for (j = 0; j <= numt; j++) {
+				for (k = 1; k >= 0; k--) {
+					s = (i + k) % numc + 0.5;
+					t = j % numt;
+
+					x = (1 + .1*cos(s*twopi / numc))*cos(t*twopi / numt);
+					y = (1 + .1*cos(s*twopi / numc))*sin(t*twopi / numt);
+					z = .1 * sin(s * twopi / numc);
+					vertices.push_back(x);
+					vertices.push_back(y);
+					vertices.push_back(z);
+					indices.push_back(index++);
+				}
+			}
+		}
+	}
 	
 	static void sphereTexture2(int n, float x0, float y0, float r, float rr, std::vector<float> &vertices, std::vector<unsigned int> &indices) {
 		float res = 0.02f;

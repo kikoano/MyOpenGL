@@ -20,6 +20,9 @@
 #include "States\BallBounceState.h"
 #include "States\CameraState.h"
 #include "States\LightState.h"
+#include "States\ColorCubeState.h"
+#include "States\FinkiLogoState3D.h"
+#include "States\Pacman3DState.h"
 
 unsigned int WIDTH = 600;
 unsigned int HEIGHT = 600;
@@ -189,14 +192,18 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 				stateManager.ChangeState(new YingYangLegacyState());
 			}
 			else if (glVersion == 3) {
-				stateManager.ChangeState(new LightState());
+				stateManager.ChangeState(new ColorCubeState());
 			}
+		
 		}
 		if (key == GLFW_KEY_6 && action == GLFW_PRESS) {
 			if (glVersion == 2)
 				stateManager.ChangeState(new WheelColorsState());
 			else if (glVersion == 1) {
 				stateManager.ChangeState(new FlowerLegacyState());
+			}
+			else if (glVersion == 3) {
+				stateManager.ChangeState(new FinkiLogoState3D());
 			}
 		}
 		if (key == GLFW_KEY_7 && action == GLFW_PRESS) {
@@ -205,12 +212,18 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			else if (glVersion == 1) {
 				stateManager.ChangeState(new FlowerLegacyState());
 			}
+			else if (glVersion == 3) {
+				stateManager.ChangeState(new Pacman3DState());
+			}
 		}
 		if (key == GLFW_KEY_8 && action == GLFW_PRESS) {
 			if (glVersion == 2)
 				stateManager.ChangeState(new PacmanState());
 			else if (glVersion == 1) {
 				stateManager.ChangeState(new FlowerLegacyState());
+			}
+			else if (glVersion == 3) {
+				stateManager.ChangeState(new LightState());
 			}
 		}
 		if (key == GLFW_KEY_9 && action == GLFW_PRESS) {

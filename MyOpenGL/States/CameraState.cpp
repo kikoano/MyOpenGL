@@ -117,6 +117,7 @@ void CameraState::HandleKeyEvents(StateManager* stateManager, int key, int actio
 void CameraState::HandleMouseEvents(double xoffset, double yoffset)
 {
 	camera->ProcessMouseMovement(xoffset, yoffset);
+
 }
 
 void CameraState::HandleScrollEvents(double xoffset, double yoffset)
