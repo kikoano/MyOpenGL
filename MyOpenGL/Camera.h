@@ -4,8 +4,12 @@
 const float YAW = -90.0f;
 const float PITCH = 0.0f;
 const float SPEED = 2.5f;
+const float JUMP_SPEED = 5.0f;
+const float CROUCH_SPEED = 1.0f;
 const float SENSITIVITY = 0.1f;
 const float ZOOM = 45.0f;
+const float JUMP_LIMIT = 2.0f;
+const float GROUND = 0.0f;
 
 class Camera : public Entity
 {
@@ -23,10 +27,19 @@ private:
 	float zoom;
 	bool direction[4]{false};
 
+	bool fly;
+	bool jump = false;
+	bool jumpPress = false;
+	float jumpSpeed;
+	float acceration = 0.0f;
+
+	bool crouch = false;
+	bool crouchPress = false;
+
 	void updateCameraVectors();
 
 public:
-	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH);
+	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f),bool fly = true ,glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH);
 	void Init();
 	void Update(double delta);
 	void ProcessKeyboard(int key, int action);
@@ -34,5 +47,6 @@ public:
 	void ProcessMouseScroll(float yoffset);
 	glm::mat4 GetViewMatrix();
 	inline float GetZoom() { return zoom; };
+
 };
 

@@ -138,6 +138,9 @@
     <ClCompile Include="Vendor\imgui\imgui_impl_glfw_gl3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="States\FpsCameraStrate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glitter.h">
@@ -272,6 +275,9 @@
     <ClInclude Include="Vendor\imgui\stb_truetype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="States\FpsCameraStrate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\BasicColor.frag" />
@@ -293,6 +299,10 @@
     <None Include="Resources\Shaders\ColorCube.vert" />
     <None Include="Resources\Shaders\Finki.frag" />
     <None Include="Resources\Shaders\Finki.vert" />
+    <None Include="Resources\Shaders\lampColor.frag" />
+    <None Include="Resources\Shaders\lampColor.vert" />
+    <None Include="Resources\Shaders\MaterialLighting.frag" />
+    <None Include="Resources\Shaders\MaterialLighting.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\awesomeface.png">

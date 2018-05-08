@@ -1,7 +1,7 @@
 #include "Camera.h"
 #include <GLFW\glfw3.h>
-Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch) : Entity(position),worldUp(up), yaw(yaw),pitch(pitch),
-front(glm::vec3(0.0f, 0.0f, -1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVITY), zoom(ZOOM)
+Camera::Camera(glm::vec3 position, bool fly, glm::vec3 up, float yaw, float pitch) : Entity(position),worldUp(up), yaw(yaw),pitch(pitch),
+front(glm::vec3(0.0f, 0.0f, -1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVITY), zoom(ZOOM), fly(fly), jumpSpeed(JUMP_SPEED)
 {
 	updateCameraVectors();
 }
@@ -17,15 +17,41 @@ glm::mat4 Camera::GetViewMatrix()
 }
 void Camera::Update(double delta)
 {
-	float velocity = movementSpeed * delta;
-	if (direction[0])
-		position += front * velocity;
-	if (direction[1])
-		position -= front * velocity;
-	if (direction[2])
-		position -= right * velocity;
-	if (direction[3])
-		position += right * velocity;
+		if (jumpPress) {
+			acceration = jumpSpeed * delta;
+			jumpPress = false;
+		}
+
+		if (jump) {
+			if (position.y < GROUND)
+				jump = false;
+			acceration -= 0.01f * delta;
+			position.y += acceration;
+		}
+
+		if (crouch) {
+			acceration = CROUCH_SPEED * delta; 
+			if(position.y> -0.2f)
+			position.y -= acceration;
+
+		}
+		else if (position.y < 0.0f) {
+			acceration = CROUCH_SPEED * delta;
+			position.y += acceration;
+		}
+		float velocity = movementSpeed * delta;
+		if (direction[0])
+			position += front * velocity;
+		if (direction[1])
+			position -= front * velocity;
+		if (direction[2])
+			position -= right * velocity;
+		if (direction[3])
+			position += right * velocity;
+
+		if (!fly && !jump && !crouch) {
+			position.y = 0.0f;
+		}
 }
 
 void Camera::ProcessKeyboard(int key, int action)
@@ -53,6 +79,22 @@ void Camera::ProcessKeyboard(int key, int action)
 			direction[3] = true;
 		else if (action == GLFW_RELEASE)
 			direction[3] = false;
+	}
+	if (!fly) {
+		if (key == GLFW_KEY_SPACE && !jump) {
+			if (action == GLFW_PRESS) {
+				jump = true;
+				jumpPress = true;
+			}
+		}
+		if (key == GLFW_KEY_C && !jump) {
+			if (action == GLFW_PRESS) {
+				crouch = true;
+				crouchPress = true;
+			}
+			else if (action == GLFW_RELEASE)
+				crouch = false;
+		}
 	}
 }
 

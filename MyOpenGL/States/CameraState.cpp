@@ -88,7 +88,7 @@ void CameraState::Init()
 	shader->Bind();
 	shader->SetUniform1i("texture1", 0);
 	shader->SetUniform1i("texture2", 1);
-
+	
 
 	//clear all binding
 	va->Unbind();
