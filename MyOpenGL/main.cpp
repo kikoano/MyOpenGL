@@ -24,6 +24,7 @@
 #include "States\FinkiLogoState3D.h"
 #include "States\Pacman3DState.h"
 #include "States\TestCubeState.h"
+#include "States\FpsCameraStrate.h"
 
 unsigned int WIDTH = 600;
 unsigned int HEIGHT = 600;
@@ -256,7 +257,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 				stateManager.ChangeState(new FlowerLegacyState());
 			}
 			else if (glVersion == 3) {
-				stateManager.ChangeState(new TestCubeState());
+				stateManager.ChangeState(new FpsCameraStrate());
 			}
 		}
 	}

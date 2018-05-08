@@ -141,6 +141,7 @@
     <ClCompile Include="States\FinkiLogoState3D.cpp" />
     <ClCompile Include="States\FlowerLegacyState.cpp" />
     <ClCompile Include="States\FlowerState.cpp" />
+    <ClCompile Include="States\FpsCameraStrate.cpp" />
     <ClCompile Include="States\GradientState.cpp" />
     <ClCompile Include="States\HouseLegacyState.cpp" />
     <ClCompile Include="States\LightState.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="States\FinkiLogoState3D.h" />
     <ClInclude Include="States\FlowerLegacyState.h" />
     <ClInclude Include="States\FlowerState.h" />
+    <ClInclude Include="States\FpsCameraStrate.h" />
     <ClInclude Include="States\GradientState.h" />
     <ClInclude Include="States\HouseLegacyState.h" />
     <ClInclude Include="States\LightState.h" />
@@ -229,6 +231,10 @@
     <None Include="Resources\Shaders\ColorCube.vert" />
     <None Include="Resources\Shaders\Finki.frag" />
     <None Include="Resources\Shaders\Finki.vert" />
+    <None Include="Resources\Shaders\lampColor.frag" />
+    <None Include="Resources\Shaders\lampColor.vert" />
+    <None Include="Resources\Shaders\MaterialLighting.frag" />
+    <None Include="Resources\Shaders\MaterialLighting.vert" />
     <None Include="Resources\Shaders\Mix2Texture.frag" />
     <None Include="Resources\Shaders\Projection3D.frag" />
     <None Include="Resources\Shaders\Projection3D.vert" />

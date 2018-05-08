@@ -29,7 +29,7 @@ void drawCircle(float radius) {
 //
 void mnagolnik(int f, int n, float x0, float y0, float r) {
 	/* x0, y0 centar, r radius na n-agolnikot */
-	float angle, alfa;
+	float angle= 0.0f, alfa =0.0f;
 	//angle = 2 * M_PI / n; // najdi go agolot
 	//alfa = -M_PI / 2 + angle / 2; // za da bide ispraven 
 	alfa += angle;
@@ -43,7 +43,7 @@ void mnagolnik(int f, int n, float x0, float y0, float r) {
 }
 void mnagolnikMy(int n, float x0, float y0, float r) {
 	/* x0, y0 centar, r radius na n-agolnikot */
-	float angle, alfa;
+	float angle= 0.0f, alfa = 0.0f;
 	//angle = 2 * M_PI / n; // najdi go agolot
 	//alfa = -M_PI / 2 + angle / 2; // za da bide ispraven 
 	alfa += angle;
@@ -59,7 +59,7 @@ void mnagolnikMy(int n, float x0, float y0, float r) {
 /* crta n-agolnik na proizvolno mesto na ekranot */
 void polyeder(int f, int n, float x0, float y0, float r) {
 	/* x0, y0 centar, r radius na n-agolnikot */
-	float angle, alfa, xs, ys, xn, yn, s, c;
+	float angle = 0.0f, alfa = 0.0f, xs, ys, xn, yn, s, c;
 	//angle = 2 * M_PI / n;
 	alfa = /*-M_PI /*/ 2 + angle / 2; /* za da bide ispraven */
 	xs = r * cos(alfa);
@@ -81,7 +81,7 @@ void polyeder(int f, int n, float x0, float y0, float r) {
 /* crta n-agolnik na proizvolno mesto na ekranot */
 void mnagolnik2(int f, int n, float x0, float y0, float r) {
 	/* x0, y0 centar, r radius na n-agolnikot */
-	float angle, alfa;
+	float angle = 0.0f, alfa = 0.0f;
 	//angle = 2 * M_PI / n;
 	//alfa = -M_PI / 2 + angle / 2; /* za da bide ispraven */
 	alfa += angle;
@@ -98,7 +98,7 @@ void mnagolnik2(int f, int n, float x0, float y0, float r) {
 /* crta n-agolnik na proizvolno mesto na ekranot */
 void polyeder2(int f, int n, float x0, float y0, float r) {
 	/* x0, y0 centar, r radius na n-agolnikot */
-	float angle, alfa, xs, ys, xn, yn, s, c;
+	float angle = 0.0f, alfa = 0.0f, xs, ys, xn, yn, s, c;
 	//angle = 2 * M_PI / n;
 	//alfa = -M_PI / 2 + angle / 2; /* za da bide ispraven */
 	xs = r * cos(alfa);
