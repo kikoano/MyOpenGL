@@ -23,11 +23,13 @@
 #include "States\ColorCubeState.h"
 #include "States\FinkiLogoState3D.h"
 #include "States\Pacman3DState.h"
+#include "States\TestCubeState.h"
 
 unsigned int WIDTH = 600;
 unsigned int HEIGHT = 600;
 StateManager stateManager;
 bool wireflame = false;
+bool debugMode = false;
 int glVersion = 0;
 int currentState = 0;
 
@@ -112,10 +114,18 @@ int main(int argc, char * argv[]) {
 	stateManager.Init();
 	stateManager.PushState(new TestState());
 
+	//imgui init
+	ImGui::CreateContext();
+	ImGui_ImplGlfwGL3_Init(window, false); //future add ImGui_ImplGlfw_KeyCallback?
+	ImGui::StyleColorsDark();
+	//ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f), ImGuiSetCond_FirstUseEver);
+
+
 	// Rendering Loop
 
 	double lastTime = glfwGetTime();
 	double deltaTime;
+
 	while (!glfwWindowShouldClose(window)) {
 
 		deltaTime = glfwGetTime() - lastTime;
@@ -124,8 +134,16 @@ int main(int argc, char * argv[]) {
 		// input
 		glfwPollEvents();
 
+		ImGui_ImplGlfwGL3_NewFrame();
+
 		stateManager.Update(deltaTime);
 		stateManager.Render();
+
+		// Render imgui
+
+			ImGui::Render();
+			ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
+
 
 		// Flip Buffers and Draw
 		glfwSwapBuffers(window);
@@ -133,6 +151,11 @@ int main(int argc, char * argv[]) {
 
 	}
 	//stateManager.~StateManager(); //maybe
+
+	// Destroy imgui
+	ImGui_ImplGlfwGL3_Shutdown();
+	ImGui::DestroyContext();
+
 	glfwTerminate();
 	return EXIT_SUCCESS;
 }
@@ -232,6 +255,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			else if (glVersion == 1) {
 				stateManager.ChangeState(new FlowerLegacyState());
 			}
+			else if (glVersion == 3) {
+				stateManager.ChangeState(new TestCubeState());
+			}
 		}
 	}
 	currentState = key;
@@ -243,29 +269,40 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		else
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
+	//Debug mode
+	if (key == GLFW_KEY_GRAVE_ACCENT && action == GLFW_PRESS) {
+		debugMode = !debugMode;
+		if (debugMode)
+			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		else
+			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	}
 	stateManager.HandleKeyEvents(key, action);
-}
+	}
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
-	if (firstMouse)
-	{
+		if (firstMouse)
+		{
+			lastX = xpos;
+			lastY = ypos;
+			firstMouse = false;
+		}
+
+		float xoffset = xpos - lastX;
+		float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+
 		lastX = xpos;
 		lastY = ypos;
-		firstMouse = false;
-	}
-
-	float xoffset = xpos - lastX;
-	float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
-
-	lastX = xpos;
-	lastY = ypos;
-
-	stateManager.HandleMouseEvents(xoffset, yoffset);
+		if (!debugMode) {
+			stateManager.HandleMouseEvents(xoffset, yoffset);
+		}
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
 // ----------------------------------------------------------------------
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-	stateManager.HandleScrollEvents(xoffset, yoffset);
+	if (!debugMode) {
+		stateManager.HandleScrollEvents(xoffset, yoffset);
+	}
 }

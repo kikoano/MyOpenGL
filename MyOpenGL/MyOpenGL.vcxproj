@@ -151,6 +151,7 @@
     <ClCompile Include="States\RombState.cpp" />
     <ClCompile Include="States\StateManager.cpp" />
     <ClCompile Include="States\TabletLegacyState.cpp" />
+    <ClCompile Include="States\TestCubeState.cpp" />
     <ClCompile Include="States\TestLegacyState.cpp" />
     <ClCompile Include="States\TestState.cpp" />
     <ClCompile Include="States\TextureTestState.cpp" />
@@ -159,6 +160,10 @@
     <ClCompile Include="States\YingYangLegacyState.cpp" />
     <ClCompile Include="States\TransformState.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Vendor\imgui\imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="VertexArray.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="VertexBufferLayout.cpp" />
@@ -189,6 +194,7 @@
     <ClInclude Include="States\State.h" />
     <ClInclude Include="States\StateManager.h" />
     <ClInclude Include="States\TabletLegacyState.h" />
+    <ClInclude Include="States\TestCubeState.h" />
     <ClInclude Include="States\TestLegacyState.h" />
     <ClInclude Include="States\TestState.h" />
     <ClInclude Include="States\TextureTestState.h" />
@@ -197,6 +203,13 @@
     <ClInclude Include="States\YingYangLegacyState.h" />
     <ClInclude Include="States\TransformState.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Vendor\imgui\imconfig.h" />
+    <ClInclude Include="Vendor\imgui\imgui.h" />
+    <ClInclude Include="Vendor\imgui\imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="Vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="Vendor\imgui\stb_rect_pack.h" />
+    <ClInclude Include="Vendor\imgui\stb_textedit.h" />
+    <ClInclude Include="Vendor\imgui\stb_truetype.h" />
     <ClInclude Include="VertexArray.h" />
     <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="VertexBufferLayout.h" />
