@@ -59,6 +59,7 @@ void StateManager::Update(double delta)
 void StateManager::Render()
 {
 	states.back()->Render(this);
+	states.back()->RenderGui(this);
 }
 StateManager::~StateManager() {
 	for (int i = 0; i < states.size(); i++)

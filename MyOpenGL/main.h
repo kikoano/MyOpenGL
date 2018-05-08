@@ -3,6 +3,8 @@
 #include <string>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "Vendor\imgui\imgui.h"
+#include "Vendor\imgui\imgui_impl_glfw_gl3.h"
 extern unsigned int WIDTH;
 extern unsigned int HEIGHT;
 static const std::string RESOURCES_PATH = "F:\\Visual Studio Projects\\MyOpenGL\\MyOpenGL\\Resources\\"; //"F:\\Visual Studio Projects\\MyOpenGL\\MyOpenGL\\Resources\\"; //"C:\\Users\\\\source\\repos\\MyOpenGL\\MyOpenGL\\Resources\\"; //"../../MyOpenGL/Resources/";

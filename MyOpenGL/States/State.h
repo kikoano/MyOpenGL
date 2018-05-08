@@ -20,6 +20,12 @@ public:
 	virtual void Update(StateManager* stateManager, double delta) = 0;
 	virtual void Render(StateManager* stateManager) = 0;
 
+	virtual void RenderGui(StateManager* stateManager) {
+		//ImGui::Begin("Debug");
+		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+		//ImGui::End();
+	}
+
 	void ChangeState(StateManager* stateManager, State* state) {
 		stateManager->ChangeState(state);
 	}

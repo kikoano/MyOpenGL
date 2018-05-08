@@ -58,13 +58,14 @@ void LightState::Init()
 
 	VertexBufferLayout layout;
 	layout.Push<float>(3);
-	layout.Push<float>(3); //color
+	layout.Push<float>(3); //normals?
 
 	cubeVAO->AddBuffer(*vb, layout);
 	
 	lightVAO = new VertexArray();
 	
 	VertexBufferLayout layout2; // ?
+	layout2.Push<float>(3);
 	layout2.Push<float>(3);
 
 	lightVAO->AddBuffer(*vb, layout2);
@@ -115,6 +116,13 @@ void LightState::HandleScrollEvents(double xoffset, double yoffset)
 {
 	camera->ProcessMouseScroll(yoffset);
 }
+void LightState::RenderGui(StateManager* stateManager) {
+		//ImGui::Begin("Edit");
+		ImGui::SliderFloat3("Light Translation", &lightPos.x, -10.0f, 10.0f);            // Edit 1 float using a slider from 0.0f to 1.0f    
+		ImGui::ColorEdit3("Light Color", &lightColor.x); // Edit 3 floats representing a color
+		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+		//::End();
+}
 
 void LightState::Update(StateManager* stateManager, double delta)
 {
@@ -129,7 +137,7 @@ void LightState::Render(StateManager* stateManager)
 
 	lightingShader->Bind();
 	lightingShader->SetUniform3f("objectColor", 1.0f, 0.5f, 0.31f);
-	lightingShader->SetUniform3f("lightColor", 1.0f, 1.0f, 1.0f);
+	lightingShader->SetUniform3fv("lightColor",lightColor);
 	lightingShader->SetUniform3fv("lightPos", lightPos);
 	lightingShader->SetUniform3fv("viewPos", camera->GetPosition());
 

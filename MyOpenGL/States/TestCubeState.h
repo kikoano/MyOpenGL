@@ -2,24 +2,21 @@
 #include "State.h"
 #include "..//Camera.h"
 
-class LightState : public State
+class TestCubeState : public State
 {
 private:
+	unsigned int VAO;
 	std::vector<float> vertices;
 	std::vector<unsigned int> indices;
-	VertexArray* cubeVAO, *lightVAO;
+	VertexArray* va;
 	VertexBuffer* vb;
 	IndexBuffer* ib;
-	Shader* lightingShader, *lampShader;
+	Shader* shader;
 	glm::mat4 model;
 	glm::mat4 view;
 	glm::mat4 projection;
 	Renderer renderer;
-	Texture *texture1, *texture2;
 	Camera *camera;
-
-	glm::vec3 lightPos = glm::vec3(1.2f, 1.0f, 2.0f);
-	glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 public:
 	void Init();
 
@@ -31,7 +28,6 @@ public:
 	void HandleScrollEvents(double xoffset, double yoffset);
 	void Update(StateManager* stateManager, double delta);
 	void Render(StateManager* stateManager);
-	void RenderGui(StateManager* stateManager) override;
-	~LightState();
+	~TestCubeState();
 
 };
