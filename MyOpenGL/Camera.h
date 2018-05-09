@@ -4,12 +4,16 @@
 const float YAW = -90.0f;
 const float PITCH = 0.0f;
 const float SPEED = 2.5f;
+const float SPRINT_SPEED = 2.0f;
 const float JUMP_SPEED = 5.0f;
-const float CROUCH_SPEED = 1.0f;
+const float CROUCH_SPEED = 0.0002f;
+const float STANDUP_SPEED = 3.0f;
 const float SENSITIVITY = 0.1f;
 const float ZOOM = 45.0f;
-const float JUMP_LIMIT = 2.0f;
+const float JUMP_LIMIT = 2.5f;
 const float GROUND = 0.0f;
+const float CROUCH_GROUND = -0.3f;
+const float GRAVITY = 0.003f;
 
 class Camera : public Entity
 {
@@ -18,6 +22,8 @@ private:
 	glm::vec3 up;
 	glm::vec3 right;
 	glm::vec3 worldUp;
+
+	glm::vec3 velocity;
 	// Euler Angles
 	float yaw;
 	float pitch;
@@ -26,15 +32,18 @@ private:
 	float mouseSensitivity;
 	float zoom;
 	bool direction[4]{false};
+	float accerationJump = 0.0f;
+	float accerationCrouch= 0.0f;
+	float accerationStandUp = 0.0f;
 
 	bool fly;
 	bool jump = false;
-	bool jumpPress = false;
 	float jumpSpeed;
-	float acceration = 0.0f;
 
 	bool crouch = false;
-	bool crouchPress = false;
+	bool standUp = false;
+	bool sprint = false;
+	float sprintSpeed = SPRINT_SPEED;
 
 	void updateCameraVectors();
 
@@ -47,6 +56,11 @@ public:
 	void ProcessMouseScroll(float yoffset);
 	glm::mat4 GetViewMatrix();
 	inline float GetZoom() { return zoom; };
-
+	inline float GetAcceration() {
+		return accerationJump;
+	}
+	inline glm::vec3 GetVelocity() {
+		return velocity;
+	}
 };
 

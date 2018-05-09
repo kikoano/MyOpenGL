@@ -124,6 +124,8 @@ void FpsCameraStrate::RenderGui(StateManager* stateManager) {
 		ImGui::SliderFloat3("Light Translation", &lightPos.x, -10.0f, 10.0f);            // Edit 1 float using a slider from 0.0f to 1.0f    
 		ImGui::ColorEdit3("Light Color", &lightColor.x); // Edit 3 floats representing a color
 		ImGui::Text("Position Y: %f", camera->GetPosition().y);
+		ImGui::Text("Velocity: %f", camera->GetVelocity().y);
+		ImGui::Text("Acceration: %f", camera->GetAcceration());
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 		//::End();
 }
