@@ -11,4 +11,5 @@ public:
 	inline glm::vec3 GetPosition() {
 		return position;
 	}
+
 };

@@ -1,6 +1,7 @@
 #include "Camera.h"
 #include <GLFW\glfw3.h>
-Camera::Camera(glm::vec3 position, bool fly, glm::vec3 up, float yaw, float pitch) : Entity(position),worldUp(up), yaw(yaw),pitch(pitch),
+#include <iostream>
+Camera::Camera(glm::vec3 position, bool fly, glm::vec3 up, float yaw, float pitch) : Entity(position), worldUp(up), yaw(yaw), pitch(pitch),
 front(glm::vec3(0.0f, 0.0f, -1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVITY), zoom(ZOOM), fly(fly), jumpSpeed(JUMP_SPEED)
 {
 	updateCameraVectors();
@@ -8,7 +9,7 @@ front(glm::vec3(0.0f, 0.0f, -1.0f)), movementSpeed(SPEED), mouseSensitivity(SENS
 
 void Camera::Init()
 {
-
+	velocity = glm::vec3(0.0f, 0.0f, 0.0f);
 }
 
 glm::mat4 Camera::GetViewMatrix()
@@ -17,41 +18,57 @@ glm::mat4 Camera::GetViewMatrix()
 }
 void Camera::Update(double delta)
 {
-		if (jumpPress) {
-			acceration = jumpSpeed * delta;
-			jumpPress = false;
-		}
-
+	if (!fly) {
 		if (jump) {
-			if (position.y < GROUND)
+			accerationJump -= GRAVITY;
+			velocity.y += accerationJump * delta;
+			if (velocity.y <= GROUND && !standUp) {
 				jump = false;
-			acceration -= 0.01f * delta;
-			position.y += acceration;
+				velocity.y = GROUND;
+			}
 		}
-
 		if (crouch) {
-			acceration = CROUCH_SPEED * delta; 
-			if(position.y> -0.2f)
-			position.y -= acceration;
+			accerationCrouch += GRAVITY;
+			if (velocity.y > CROUCH_GROUND)
+				velocity.y -= accerationCrouch * delta;
+			else
+				velocity.y = CROUCH_GROUND;
+		}
+		if (standUp) {
+			accerationStandUp -= GRAVITY;
+			velocity.y += accerationStandUp * delta;
+			if (velocity.y >= GROUND) {
+				velocity.y = GROUND;
+				standUp = false;
+			}
+		}
+		position.y = velocity.y;
+	}
+	if (sprint) {
+		velocity.x = movementSpeed * sprintSpeed * delta;
+		velocity.z = movementSpeed * sprintSpeed * delta;
+	}
+	else
+	{
+		velocity.x = movementSpeed * delta;
+		velocity.z = movementSpeed * delta;
+	}
+	if (direction[0])
+		if (fly)
+			position += front * velocity.z;
+		else
+			position += glm::normalize(glm::cross(worldUp, right)) * velocity.z;
+	if (direction[1])
+		if (fly)
+			position -= front * velocity.z;
+		else
+			position -= glm::normalize(glm::cross(worldUp, right)) * velocity.z;
 
-		}
-		else if (position.y < 0.0f) {
-			acceration = CROUCH_SPEED * delta;
-			position.y += acceration;
-		}
-		float velocity = movementSpeed * delta;
-		if (direction[0])
-			position += front * velocity;
-		if (direction[1])
-			position -= front * velocity;
-		if (direction[2])
-			position -= right * velocity;
-		if (direction[3])
-			position += right * velocity;
-
-		if (!fly && !jump && !crouch) {
-			position.y = 0.0f;
-		}
+	if (direction[2])
+		position -= right * velocity.x;
+	if (direction[3])
+		position += right * velocity.x;
+	
 }
 
 void Camera::ProcessKeyboard(int key, int action)
@@ -80,20 +97,30 @@ void Camera::ProcessKeyboard(int key, int action)
 		else if (action == GLFW_RELEASE)
 			direction[3] = false;
 	}
+	if (key == GLFW_KEY_LEFT_SHIFT) {
+		if (action == GLFW_PRESS)
+			sprint = true;
+		else if (action == GLFW_RELEASE)
+			sprint = false;
+	}
 	if (!fly) {
-		if (key == GLFW_KEY_SPACE && !jump) {
+		if (key == GLFW_KEY_SPACE && !jump && !crouch) {
 			if (action == GLFW_PRESS) {
 				jump = true;
-				jumpPress = true;
+				accerationJump = jumpSpeed;
 			}
 		}
-		if (key == GLFW_KEY_C && !jump) {
+		if (key == GLFW_KEY_C) {
 			if (action == GLFW_PRESS) {
 				crouch = true;
-				crouchPress = true;
+				standUp = false;
+				accerationCrouch = CROUCH_SPEED;
 			}
-			else if (action == GLFW_RELEASE)
+			else if (action == GLFW_RELEASE) {
 				crouch = false;
+				standUp = true;
+				accerationStandUp = STANDUP_SPEED;
+			}
 		}
 	}
 }
