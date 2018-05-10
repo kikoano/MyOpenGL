@@ -20,7 +20,7 @@ void Camera::Update(double delta)
 {
 	if (!fly) {
 		if (jump) {
-			accerationJump -= GRAVITY;
+			accerationJump -= GRAVITY * delta;
 			velocity.y += accerationJump * delta;
 			if (velocity.y <= GROUND && !standUp) {
 				jump = false;
@@ -28,14 +28,14 @@ void Camera::Update(double delta)
 			}
 		}
 		if (crouch) {
-			accerationCrouch += GRAVITY;
+			accerationCrouch += GRAVITY * delta;
 			if (velocity.y > CROUCH_GROUND)
 				velocity.y -= accerationCrouch * delta;
 			else
 				velocity.y = CROUCH_GROUND;
 		}
 		if (standUp) {
-			accerationStandUp -= GRAVITY;
+			accerationStandUp -= GRAVITY * delta;
 			velocity.y += accerationStandUp * delta;
 			if (velocity.y >= GROUND) {
 				velocity.y = GROUND;
