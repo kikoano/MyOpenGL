@@ -13,7 +13,7 @@ const float ZOOM = 45.0f;
 const float JUMP_LIMIT = 2.5f;
 const float GROUND = 0.0f;
 const float CROUCH_GROUND = -0.3f;
-const float GRAVITY = 0.003f;
+const float GRAVITY = 9.8f;
 
 class Camera : public Entity
 {
