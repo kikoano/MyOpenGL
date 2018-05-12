@@ -110,7 +110,7 @@ void Camera::ProcessKeyboard(int key, int action)
 				accerationJump = jumpSpeed;
 			}
 		}
-		if (key == GLFW_KEY_C) {
+		if (key == GLFW_KEY_C && !jump) {
 			if (action == GLFW_PRESS) {
 				crouch = true;
 				standUp = false;

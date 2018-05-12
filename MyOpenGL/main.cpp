@@ -119,6 +119,8 @@ int main(int argc, char * argv[]) {
 	ImGui::CreateContext();
 	ImGui_ImplGlfwGL3_Init(window, false); //future add ImGui_ImplGlfw_KeyCallback?
 	ImGui::StyleColorsDark();
+	ImGui::SetNextWindowPos(ImVec2(0.0f,0.0f));
+	ImGui::SetNextWindowSizeConstraints(ImVec2(400.0f, 120.0f), ImVec2(400.0f, 120.0f));
 	//ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f), ImGuiSetCond_FirstUseEver);
 
 
