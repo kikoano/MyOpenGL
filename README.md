@@ -9,7 +9,6 @@ Toggle on/off mouse cursor with <kbd>`</kbd>(default off).
 Toggle on/off wireframe mode with <kbd>numpad 0</kbd>.
 <br>
 In Modern OpenGL 3D scenes 4-8 you can:
-<br>
 <ul>
 <li>Move camera with <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> and mouse.</li>
 <li>Hold <kbd>shift</kbd> to move faster</li>
