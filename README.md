@@ -6,7 +6,7 @@ Press <kbd>1</kbd>-<kbd>9</kbd> to change state.
 <br>
 Toggle on/off mouse cursor with <kbd>`</kbd>(default off).
 <br>
-Toggle on/off wireframe mode with numpad 0.
+Toggle on/off wireframe mode with <kbd>numpad 0</kbd>.
 <br>
 In Modern OpenGL 3D scenes 4-8 you can:
 <br>
