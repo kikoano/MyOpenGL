@@ -26,6 +26,7 @@
 #include "States\TestCubeState.h"
 #include "States\FpsCameraStrate.h"
 #include "States\LightMapState.h"
+#include "States\ProceduralTerrain.h"
 
 unsigned int WIDTH = 600;
 unsigned int HEIGHT = 600;
@@ -51,6 +52,7 @@ int main(int argc, char * argv[]) {
 	std::cout << "1.Legacy OpenGL" << std::endl;
 	std::cout << "2.Modern OpenGL 2D" << std::endl;
 	std::cout << "3.Modern OpenGL 3D" << std::endl;
+	std::cout << "4.Modern Advanced OpenGL 3D" << std::endl;
 	while (glVersion == 0)
 		std::cin >> glVersion;
 	system("cls");
@@ -76,6 +78,14 @@ int main(int argc, char * argv[]) {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		std::cout << "Modern OpenGL 3D" << std::endl;
+	}
+	else if (glVersion == 4) {
+		WIDTH = 1280;
+		HEIGHT = 720;
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		std::cout << "Modern Advanced OpenGL 3D" << std::endl;
 	}
 
 	 lastX = WIDTH / 2.0f;
@@ -121,7 +131,10 @@ int main(int argc, char * argv[]) {
 	ImGui_ImplGlfwGL3_Init(window, false); //future add ImGui_ImplGlfw_KeyCallback?
 	ImGui::StyleColorsDark();
 	ImGui::SetNextWindowPos(ImVec2(0.0f,0.0f));
-	ImGui::SetNextWindowSizeConstraints(ImVec2(400.0f, 120.0f), ImVec2(400.0f, 120.0f));
+	if(glVersion<4)
+		ImGui::SetNextWindowSizeConstraints(ImVec2(400.0f, 120.0f), ImVec2(400.0f, 120.0f));
+	else
+		ImGui::SetNextWindowSizeConstraints(ImVec2(400.0f, 310.0f), ImVec2(400.0f, 310.0f));
 	//ImGui::SetNextWindowPos(ImVec2(0.0f, 0.0f), ImGuiSetCond_FirstUseEver);
 
 
@@ -191,6 +204,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			else if (glVersion == 3) {
 				stateManager.ChangeState(new Projection3DState());
 			}
+			else if (glVersion == 4) {
+				stateManager.ChangeState(new LightMapState());
+			}
 		}
 		if (key == GLFW_KEY_3 && action == GLFW_PRESS) {
 			if (glVersion == 2)
@@ -200,6 +216,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			}
 			else if (glVersion == 3) {
 				stateManager.ChangeState(new BallBounceState());
+			}
+			else if (glVersion == 4) {
+				stateManager.ChangeState(new ProceduralTerrain());
 			}
 		}
 		if (key == GLFW_KEY_4 && action == GLFW_PRESS) {
@@ -261,16 +280,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			}
 			else if (glVersion == 3) {
 				stateManager.ChangeState(new FpsCameraStrate());
-			}
-		}
-		if (key == GLFW_KEY_0 && action == GLFW_PRESS) {
-			if (glVersion == 2)
-				stateManager.ChangeState(new TextureTestState());
-			else if (glVersion == 1) {
-				stateManager.ChangeState(new FlowerLegacyState());
-			}
-			else if (glVersion == 3) {
-				stateManager.ChangeState(new LightMapState());
 			}
 		}
 	}
