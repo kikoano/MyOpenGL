@@ -204,7 +204,7 @@ namespace draw {
 		}
 
 	}
-	static void polyederElementColor(int n, float x0, float y0, float r, std::vector<float> &vertices, std::vector<unsigned int> &indices, float * colors) {
+	static void polyederElementColor(int n, float x0, float y0, float r, std::vector<float> &vertices, std::vector<unsigned int> &indices, float *colors) {
 		polyederElementColor(n, x0, y0, r, r, vertices, indices, colors);
 	}
 	static void polyederColorWheel(int n, float x0, float y0, float r, std::vector<float> &vertices) {

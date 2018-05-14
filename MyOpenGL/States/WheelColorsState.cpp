@@ -69,7 +69,7 @@ void WheelColorsState::Render(StateManager* stateManager)
 WheelColorsState::~WheelColorsState() {
 	shader->Unbind();
 	delete shader;
-	glDeleteBuffers(1, &VAO);
+	glDeleteVertexArrays(1, &VAO);
 	vb->Unblind();
 	delete vb;
 }

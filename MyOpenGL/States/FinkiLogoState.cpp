@@ -73,10 +73,10 @@ void FinkiLogoState::Render(StateManager* stateManager)
 
 FinkiLogoState::~FinkiLogoState() {
 	shader->Unbind();
+	vertices.clear();
+	indices.clear();
 	delete shader;
 	glDeleteVertexArrays(1, &VAO);
-	vb->Unblind();
-	ib->Unblind();
 	delete vb;
 	delete ib;
 }
