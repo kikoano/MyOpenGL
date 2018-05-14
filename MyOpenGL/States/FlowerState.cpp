@@ -180,7 +180,7 @@ FlowerState::~FlowerState() {
 	glLineWidth(1.0f);
 	shader->Unbind();
 	delete shader;
-	glDeleteBuffers(1, &VAO);
+	glDeleteVertexArrays(1, &VAO);
 	vb->Unblind();
 	delete vb;
 	ib->Unblind();

@@ -27,8 +27,8 @@ private:
 	IndexBuffer* ib;
 	Shader* shader;
 	void DrawPart();
-	void P1(int i, bool scale, int&index);
-	void P2(int i, bool scale, int&index);
+	void P1(int i, bool scale, int &index);
+	void P2(int i, bool scale, int &index);
 
 public:
 	void Init();

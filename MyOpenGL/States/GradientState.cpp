@@ -71,8 +71,8 @@ void GradientState::Init()
 
 	//clear all binding
 	glBindVertexArray(0);
-	vb->Unblind();
 	ib->Unblind();
+	vb->Unblind();
 }
 
 
@@ -118,9 +118,9 @@ void GradientState::Render(StateManager* stateManager)
 GradientState::~GradientState() {
 	shader->Unbind();
 	delete shader;
-	glDeleteBuffers(1, &VAO);
+	glDeleteVertexArrays(1, &VAO);
 	vb->Unblind();
-	ib->Unblind();
 	delete vb;
+	ib->Unblind();
 	delete ib;
 }
