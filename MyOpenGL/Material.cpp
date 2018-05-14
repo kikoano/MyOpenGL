@@ -1,6 +1,8 @@
 #include "Material.h"
 
+Material::Material() {
 
+}
 Material::Material(const std::string &diffuseTexturePath, bool diffuseTextureAlpha, const std::string &specularTexturePath, bool specularTextureAlpha, float shininess) : shininess(shininess)
 {
 	diffuseTexture = new Texture(RESOURCES_PATH + "Textures\\" + diffuseTexturePath, diffuseTextureAlpha);

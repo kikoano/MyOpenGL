@@ -130,10 +130,12 @@
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Grass.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="PerlinNoise.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="States\BallBounceState.cpp" />
@@ -150,6 +152,7 @@
     <ClCompile Include="States\LightState.cpp" />
     <ClCompile Include="States\Pacman3DState.cpp" />
     <ClCompile Include="States\PacmanState.cpp" />
+    <ClCompile Include="States\ProceduralTerrain.cpp" />
     <ClCompile Include="States\Projection3DState.cpp" />
     <ClCompile Include="States\QuardState.cpp" />
     <ClCompile Include="States\RombState.cpp" />
@@ -163,6 +166,7 @@
     <ClCompile Include="States\WheelColorsState.cpp" />
     <ClCompile Include="States\YingYangLegacyState.cpp" />
     <ClCompile Include="States\TransformState.cpp" />
+    <ClCompile Include="TerrarianGenerator.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
     <ClCompile Include="Vendor\imgui\imgui_demo.cpp" />
@@ -176,10 +180,12 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="glitter.h" />
+    <ClInclude Include="Grass.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="PerlinNoise.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="States\BallBounceState.h" />
@@ -196,6 +202,7 @@
     <ClInclude Include="States\LightState.h" />
     <ClInclude Include="States\Pacman3DState.h" />
     <ClInclude Include="States\PacmanState.h" />
+    <ClInclude Include="States\ProceduralTerrain.h" />
     <ClInclude Include="States\Projection3DState.h" />
     <ClInclude Include="States\QuardState.h" />
     <ClInclude Include="States\RombState.h" />
@@ -210,6 +217,7 @@
     <ClInclude Include="States\WheelColorsState.h" />
     <ClInclude Include="States\YingYangLegacyState.h" />
     <ClInclude Include="States\TransformState.h" />
+    <ClInclude Include="TerrarianGenerator.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Vendor\imgui\imconfig.h" />
     <ClInclude Include="Vendor\imgui\imgui.h" />

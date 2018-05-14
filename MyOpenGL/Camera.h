@@ -62,5 +62,8 @@ public:
 	inline glm::vec3 GetVelocity() {
 		return velocity;
 	}
+	inline void SetMovementSpeed(float movementSpeed) {
+		this->movementSpeed = movementSpeed;
+	}
 };
 

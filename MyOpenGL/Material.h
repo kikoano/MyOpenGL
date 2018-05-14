@@ -3,11 +3,12 @@
 #include "Texture.h"
 class Material
 {
-private:
+protected:
 	Texture *diffuseTexture;
 	Texture *specularTexture;
 	float shininess;
 public:
+	Material();
 	Material(const std::string &diffuseTexturePath, bool diffuseTextureAlpha, const std::string &specularTexturePath, bool specularTextureAlpha, float shininess);
 
 	void Bind();
