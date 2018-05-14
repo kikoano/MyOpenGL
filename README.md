@@ -1,6 +1,6 @@
 # MyOpenGL
 ## Computer graphics labs
-Enter <kbd>1</kbd>, <kbd>2</kbd>, <kbd>3</kbd> or <kbd>4</kbd> for Legacy OpenGL, Modern OpenGL 2D, Modern OpenGL 3D or .Modern Advanced OpenGL 3D.
+Enter <kbd>1</kbd>, <kbd>2</kbd>, <kbd>3</kbd> or <kbd>4</kbd> for Legacy OpenGL, Modern OpenGL 2D, Modern OpenGL 3D or Modern Advanced OpenGL 3D.
 <br>
 Press <kbd>1</kbd>-<kbd>9</kbd> to change state.
 <br>
