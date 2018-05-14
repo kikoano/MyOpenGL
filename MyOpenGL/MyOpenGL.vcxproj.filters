@@ -141,6 +141,15 @@
     <ClCompile Include="States\FpsCameraStrate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="States\LightMapState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glitter.h">
@@ -278,6 +287,15 @@
     <ClInclude Include="States\FpsCameraStrate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="States\LightMapState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\BasicColor.frag" />
@@ -309,6 +327,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\container.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\container2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\container2_specular.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

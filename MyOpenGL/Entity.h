@@ -8,8 +8,7 @@ public:
 	Entity(glm::vec3 position);
 	virtual void Init() = 0;
 	virtual void Update(double delta) = 0;
-	inline glm::vec3 GetPosition() {
-		return position;
-	}
+	glm::vec3 GetPosition();
+	void SetPosition(glm::vec3 position);
 
 };
