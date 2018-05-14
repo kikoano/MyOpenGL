@@ -25,6 +25,7 @@
 #include "States\Pacman3DState.h"
 #include "States\TestCubeState.h"
 #include "States\FpsCameraStrate.h"
+#include "States\LightMapState.h"
 
 unsigned int WIDTH = 600;
 unsigned int HEIGHT = 600;
@@ -260,6 +261,16 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			}
 			else if (glVersion == 3) {
 				stateManager.ChangeState(new FpsCameraStrate());
+			}
+		}
+		if (key == GLFW_KEY_0 && action == GLFW_PRESS) {
+			if (glVersion == 2)
+				stateManager.ChangeState(new TextureTestState());
+			else if (glVersion == 1) {
+				stateManager.ChangeState(new FlowerLegacyState());
+			}
+			else if (glVersion == 3) {
+				stateManager.ChangeState(new LightMapState());
 			}
 		}
 	}
