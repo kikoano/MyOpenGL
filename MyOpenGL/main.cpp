@@ -27,6 +27,7 @@
 #include "States\FpsCameraStrate.h"
 #include "States\LightMapState.h"
 #include "States\ProceduralTerrain.h"
+#include "States\ModelState.h"
 
 unsigned int WIDTH = 600;
 unsigned int HEIGHT = 600;
@@ -230,6 +231,10 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			else if (glVersion == 3) {
 				stateManager.ChangeState(new CameraState());
 			}
+			else if (glVersion == 4) {
+				stateManager.ChangeState(new ModelState());
+			}
+			
 		}
 		if (key == GLFW_KEY_5 && action == GLFW_PRESS) {
 			if (glVersion == 2)

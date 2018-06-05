@@ -72,6 +72,7 @@ Shader::Shader(const std::string& vertexShaderSource, const std::string& fragmen
 }
 
 Shader::~Shader(){
+	std::cout << "Shader deleted "<< std::endl;
 	glDeleteProgram(program);
 }
 
@@ -129,6 +130,10 @@ void Shader::SetUniform4fv(const std::string& name, const glm::vec4 &value) {
 }
 void Shader::SetUniformMatrix4fv(const std::string& name, const glm::mat4 &mat) {
 	glUniformMatrix4fv(GetUniformLocation(name), 1, false, &mat[0][0]);
+}
+void Shader::SetUniformMatrix3fv(const std::string & name, const glm::mat3 & mat)
+{
+	glUniformMatrix3fv(GetUniformLocation(name), 1, false, &mat[0][0]);
 }
 void Shader::SetUniform1i(const std::string& name, int v0) {
 	glUniform1i(GetUniformLocation(name), v0);

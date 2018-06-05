@@ -259,3 +259,10 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/MyOpenGL/Resources/Models/WOODLAND_PACK
+/MyOpenGL/Resources/Models/tree2
+/MyOpenGL/Resources/Models/tree1
+/MyOpenGL/Resources/Models/Tree
+/MyOpenGL/Resources/Models/simpleCube
+/MyOpenGL/Resources/Models/nanosuit
+/MyOpenGL/Resources/Models/k4_treepack1

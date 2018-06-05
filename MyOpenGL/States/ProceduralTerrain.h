@@ -1,9 +1,9 @@
 #pragma once
 #include "State.h"
 #include "..//Camera.h"
-#include "../Material.h"
+#include "../Materials/Terrian.h"
 #include "../Light.h"
-#include "../TerrarianGenerator.h";
+#include "../TerrainGenerator.h";
 class ProceduralTerrain : public State
 {
 private:
@@ -22,20 +22,22 @@ private:
 	Camera *camera;
 	Material *material;
 	Light *light;
-	glm::vec3 modelPos = glm::vec3(-100.0f, 0.0f, -100.0f);
+	glm::vec3 modelPos = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::vec3 lightPos = glm::vec3(-85.0f, 100.0f, 2.0f);
 	glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 
-	TerrarianGenerator *generator;
+	TerrainGenerator *generator;
 	struct ImGuiVars {
-		float persistence = 0.25f;
-		float frequency = 0.5f;
-		float amplitude = 3.0f;
+		float persistence = 0.3f;
+		float frequency = 0.02f;
+		float amplitude = 50.0f;
 		int octaves = 7;
 		int randomseed = 2341;
-		int vertexCount = 9;
-		int size = 400;;
+		int vertexCount = 8; //9
+		int vertexFull = 8; //9
+		int size = 200; //400
 		float cameraSpeed = 6.0f;
+		int scaleTiles = 10;
 	} imGuiVars;
 public:
 	void Init();
