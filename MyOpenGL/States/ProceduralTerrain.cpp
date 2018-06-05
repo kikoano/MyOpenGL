@@ -1,25 +1,29 @@
 ﻿#include "ProceduralTerrain.h"
-#include <stb/stb_image.h>
 
 void ProceduralTerrain::Init()
 {
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 
 	camera = new Camera(glm::vec3(0.0f, 0.0f, 0.0f), true);
 	camera->SetMovementSpeed(imGuiVars.cameraSpeed);
 	light = new Light(glm::vec3(1.2f, 1.0f, 2.0f), glm::vec3(0.1f, 0.1f, 0.1f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-	imGuiVars.vertexCount = pow(2, imGuiVars.vertexCount);
-	generator = new TerrarianGenerator(imGuiVars.vertexCount, imGuiVars.size, imGuiVars.randomseed, imGuiVars.persistence, imGuiVars.frequency, imGuiVars.amplitude, imGuiVars.octaves);
-	generator->Generate(vertices,indices);
 
-	lightingShader = new Shader("MaterialLighting.vert", "MaterialLighting.frag");
+	imGuiVars.vertexCount = pow(2, imGuiVars.vertexCount);
+	imGuiVars.vertexFull = pow(2, imGuiVars.vertexFull);
+	
+	generator = new TerrainGenerator(imGuiVars.vertexCount, imGuiVars.vertexCount, imGuiVars.size, imGuiVars.randomseed, imGuiVars.persistence, imGuiVars.frequency, imGuiVars.amplitude, imGuiVars.octaves);
+	generator->Generate(vertices, indices);
+
+	lightingShader = new Shader("Terrain.vert", "Terrain.frag");
 	lampShader = new Shader("lampColor.vert", "lampColor.frag");
 
 	modelPlate = glm::translate(modelPlate, modelPos);
 
 
 	cubeVAO = new VertexArray();
-	vb = new VertexBuffer(&vertices[0], vertices.size() * sizeof(vertices[0]),false);
+	vb = new VertexBuffer(&vertices[0], vertices.size() * sizeof(vertices[0]), false);
 	ib = new IndexBuffer(&indices[0], sizeof(indices[0])* indices.size());
 	VertexBufferLayout layout;
 	layout.Push<float>(3);
@@ -37,7 +41,7 @@ void ProceduralTerrain::Init()
 
 	lightVAO->AddBuffer(*vb, layout2);
 
-	material = new Material("grassHD.jpg", false, "grassHD.jpg", false, 64.0f);
+	material = new Terrain();
 	material->Bind();
 
 	lightingShader->Bind();
@@ -77,27 +81,41 @@ void ProceduralTerrain::HandleScrollEvents(double xoffset, double yoffset)
 }
 void ProceduralTerrain::RenderGui(StateManager* stateManager) {
 	//ImGui::Begin("Edit");
-	ImGui::SliderFloat3("Light Translation", &lightPos.x, -100.0f, 100.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+	ImGui::SliderFloat3("Light Translation", &lightPos.x, -200.0f, 200.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
 	light->SetPosition(lightPos);
 	ImGui::ColorEdit3("Light Color", &lightColor.x); // Edit 3 floats representing a color
 	light->SetDiffuse(lightColor);
 	light->SetSpecular(lightColor);
 	ImGui::SliderFloat("Camera speed", &imGuiVars.cameraSpeed, 0.0f, 100.0f);
-	if(ImGui::SliderInt("Vertex Count", &imGuiVars.vertexCount, 0.0f, 512.0f))
+	if (ImGui::SliderInt("Vertex Count", &imGuiVars.vertexCount, 0.0f, 512.0f))
 		imGuiVars.vertexCount = pow(2, round(log2(imGuiVars.vertexCount)));
 	ImGui::SliderInt("Size", &imGuiVars.size, 0.0f, 1000.0f);
 	ImGui::SliderInt("Seed", &imGuiVars.randomseed, 0.0f, 10000.0f);
-	ImGui::SliderFloat("Persistence", &imGuiVars.persistence,0.0f,5.0f);
-	ImGui::SliderFloat("Frequency", &imGuiVars.frequency, 0.0f, 5.0f);
-	ImGui::SliderFloat("Amplitude", &imGuiVars.amplitude, 0.0f, 30.0f);
-	ImGui::SliderInt("Octaves", &imGuiVars.octaves, 0.0f, 30.0f);
+	ImGui::SliderFloat("Persistence", &imGuiVars.persistence, 0.0f, 2.0f);
+	ImGui::SliderFloat("Frequency", &imGuiVars.frequency, 0.0f, 1.0f);
+	ImGui::SliderFloat("Amplitude", &imGuiVars.amplitude, 0.0f, 100.0f);
+	ImGui::SliderInt("Octaves", &imGuiVars.octaves, 0.0f, 20.0f);
+	ImGui::SliderInt("Scale Tiles", &imGuiVars.scaleTiles, 0.0f, 100.0f);
+	if (ImGui::Button("Material Update")) {
+		delete material;
+		material = new Terrain();
+		material->Bind();
+		lightingShader->Bind();
+		material->BindUniforms(*lightingShader);
+	}
 	if (ImGui::Button("Generate")) {
 		vertices.clear();
 		indices.clear();
-		generator = new TerrarianGenerator(imGuiVars.vertexCount, imGuiVars.size, imGuiVars.randomseed, imGuiVars.persistence, imGuiVars.frequency, imGuiVars.amplitude, imGuiVars.octaves);
+		delete generator;
+		generator = new TerrainGenerator(/*imGuiVars.vertexFull*/imGuiVars.vertexCount, imGuiVars.vertexCount, imGuiVars.size, imGuiVars.randomseed, imGuiVars.persistence, imGuiVars.frequency, imGuiVars.amplitude, imGuiVars.octaves);
 		generator->Generate(vertices, indices);
 		vb->updateBuffer(&vertices[0], vertices.size() * sizeof(vertices[0]));
 		ib->updateBuffer(&indices[0], indices.size() * sizeof(indices[0]));
+		delete material;
+		material = new Terrain();
+		material->Bind();
+		lightingShader->Bind();
+		material->BindUniforms(*lightingShader);
 	}
 	ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 	//::End();
@@ -107,6 +125,7 @@ void ProceduralTerrain::Update(StateManager* stateManager, double delta)
 {
 	camera->Update(delta);
 	camera->SetMovementSpeed(imGuiVars.cameraSpeed);
+	//modelPlate = glm::translate(modelPlate,glm::vec3(0.0f,0.0f, delta));
 }
 
 void ProceduralTerrain::Render(StateManager* stateManager)
@@ -121,16 +140,16 @@ void ProceduralTerrain::Render(StateManager* stateManager)
 	lightingShader->SetUniform3fv("light.diffuse", light->GetDiffuse());
 	lightingShader->SetUniform3fv("light.specular", light->GetSpecular());
 
-	lightingShader->SetUniform1f("material.shininess", material->GetShininess());
+	lightingShader->SetUniform1f("material.shininess", static_cast<Terrain*>(material)->GetShininess());
+	lightingShader->SetUniform1i("scaleTiles", imGuiVars.scaleTiles);
 
 	// view/projection transformations
-	glm::mat4 projection = glm::perspective(glm::radians(camera->GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
+	glm::mat4 projection = glm::perspective(glm::radians(camera->GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 150.0f);
 	glm::mat4 view = camera->GetViewMatrix();
 	lightingShader->SetUniformMatrix4fv("projection", projection);
 	lightingShader->SetUniformMatrix4fv("view", view);
 
 	// world transformation
-
 	lightingShader->SetUniformMatrix4fv("model", modelPlate);
 
 	renderer.Render(*lightVAO, *ib, *lightingShader);
@@ -152,13 +171,14 @@ void ProceduralTerrain::Render(StateManager* stateManager)
 }
 
 ProceduralTerrain::~ProceduralTerrain() {
+	glDisable(GL_CULL_FACE);
 	lightingShader->Unbind();
 	lampShader->Unbind();
 	cubeVAO->Unbind();
 	lightVAO->Unbind();
 	vb->Unblind();
 	ib->Unblind();
-	material->Unbind();
+	Texture::Unbind();
 	delete lightingShader;
 	delete lampShader;
 	delete cubeVAO;

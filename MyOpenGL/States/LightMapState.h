@@ -1,7 +1,7 @@
 #pragma once
 #include "State.h"
 #include "..//Camera.h"
-#include "../Material.h"
+#include "../Materials/Box.h"
 #include "../Light.h"
 class LightMapState : public State
 {

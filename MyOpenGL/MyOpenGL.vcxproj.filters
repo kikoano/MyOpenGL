@@ -144,22 +144,31 @@
     <ClCompile Include="States\LightMapState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TerrarianGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="States\ProceduralTerrain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Grass.cpp">
+    <ClCompile Include="PerlinNoise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PerlinNoise.cpp">
+    <ClCompile Include="TerrainGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Materials\Box.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Materials\Terrain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="States\ModelState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -302,22 +311,34 @@
     <ClInclude Include="States\LightMapState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TerrarianGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="States\ProceduralTerrain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Grass.h">
+    <ClInclude Include="PerlinNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PerlinNoise.h">
+    <ClInclude Include="TerrainGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Materials\Box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Materials\Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Materials\Terrian.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States\ModelState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -345,6 +366,10 @@
     <None Include="Resources\Shaders\lampColor.vert" />
     <None Include="Resources\Shaders\MaterialLighting.frag" />
     <None Include="Resources\Shaders\MaterialLighting.vert" />
+    <None Include="Resources\Shaders\Terrain.frag" />
+    <None Include="Resources\Shaders\Terrain.vert" />
+    <None Include="Resources\Shaders\model.frag" />
+    <None Include="Resources\Shaders\model.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\awesomeface.png">
@@ -357,6 +382,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\container2_specular.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\grassHD.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\grass3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\dirt.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\grass.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

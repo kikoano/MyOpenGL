@@ -75,7 +75,7 @@ void LightMapState::Init()
 
 	lightVAO->AddBuffer(*vb, layout2);
 
-	material = new Material("container2.png", false, "container2_specular.png", false, 64.0f);
+	material = new Box();
 	material->Bind();
 
 	lightingShader->Bind();
@@ -142,7 +142,7 @@ void LightMapState::Render(StateManager* stateManager)
 	lightingShader->SetUniform3fv("light.diffuse", light->GetDiffuse());
 	lightingShader->SetUniform3fv("light.specular", light->GetSpecular());
 
-	lightingShader->SetUniform1f("material.shininess", material->GetShininess());
+	lightingShader->SetUniform1f("material.shininess", static_cast<Box*>(material)->GetShininess());
 
 	// view/projection transformations
 	glm::mat4 projection = glm::perspective(glm::radians(camera->GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
@@ -179,7 +179,7 @@ LightMapState::~LightMapState() {
 	lightVAO->Unbind();
 	vb->Unblind();
 	ib->Unblind();
-	material->Unbind();
+	Texture::Unbind();
 	delete lightingShader;
 	delete lampShader;
 	delete cubeVAO;

@@ -5,8 +5,8 @@
 VertexBuffer::VertexBuffer(const void* data, unsigned int size, bool drawStatic)
 {
 	//VBO
-
 	glGenBuffers(1, &rendererID);
+	std::cout << "Created VertexBuffer" << rendererID << std::endl;
 	glBindBuffer(GL_ARRAY_BUFFER, rendererID);
 	if (drawStatic)
 		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
@@ -21,6 +21,7 @@ VertexBuffer::~VertexBuffer()
 
 void VertexBuffer::Bind() const
 {
+	std::cout << "Binded VertexBuffer" << rendererID << std::endl;
 	glBindBuffer(GL_ARRAY_BUFFER, rendererID);
 }
 

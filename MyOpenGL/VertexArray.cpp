@@ -1,9 +1,10 @@
 #include "VertexArray.h"
-
+#include <iostream>
 
 VertexArray::VertexArray()
 {
 	glGenVertexArrays(1, &rendererID);
+	std::cout << "Created VertexArray"<< rendererID << std::endl;
 }
 void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout) {
 	Bind();
@@ -18,6 +19,7 @@ void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& la
 	}
 }
 void VertexArray::Bind() const {
+	//std::cout << "Binded VertexArray" << rendererID << std::endl;
 	glBindVertexArray(rendererID);
 }
 void VertexArray::Unbind() const {
