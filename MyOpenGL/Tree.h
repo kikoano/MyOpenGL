@@ -21,13 +21,15 @@ private:
 	glm::mat4 shaderModel = glm::mat4(1.0f);
 public:
 	enum Type {
-		TYPE1,
-		TYPE2,
-		TYPE3,
-		TYPE4,
-		TYPE5,
-		TYPE6,
+		TYPE1 =0,
+		TYPE2=1,
+		TYPE3=2,
+		TYPE4=3,
+		TYPE5=4,
+		TYPE6=5,
 	};
+	/*Tree(const Tree&) = delete;
+	Tree& operator=(const Tree&) = delete;*/
 	Tree(Type type,glm::vec3 position);
 	static void UpdateProView(glm::mat4 projection, glm::mat4 view);
 	void Init();

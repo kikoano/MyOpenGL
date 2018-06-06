@@ -3,6 +3,7 @@
 #include <vector>
 #include <glm\glm.hpp>
 #include "PerlinNoise.h"
+#include "Tree.h"
 class TerrainGenerator
 {
 private:

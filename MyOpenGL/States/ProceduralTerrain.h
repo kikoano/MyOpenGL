@@ -18,7 +18,6 @@ private:
 	glm::mat4 view;
 	glm::mat4 projection;
 	Renderer renderer;
-	Texture *texture1, *texture2;
 	Camera *camera;
 	Material *material;
 	Light *light;
@@ -27,6 +26,7 @@ private:
 	glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	TerrainGenerator *generator;
+	std::vector<std::unique_ptr<Tree>> trees;
 	struct ImGuiVars {
 		float persistence = 0.3f;
 		float frequency = 0.02f;
@@ -51,6 +51,7 @@ public:
 	void Update(StateManager* stateManager, double delta);
 	void Render(StateManager* stateManager);
 	void RenderGui(StateManager* stateManager) override;
+	void GenerateTrees();
 	~ProceduralTerrain();
 
 };

@@ -1,5 +1,5 @@
 #pragma once
-// System Headers
+
 #include <assimp/importer.hpp>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
@@ -7,7 +7,6 @@
 #include <glm/glm.hpp>
 #include "Shader.h"
 
-// Standard Headers
 #include <map>
 #include <memory>
 #include <vector>
@@ -37,9 +36,7 @@ public:
 
 	// Implement Custom Constructors
 	Mesh(std::string const & filename);
-	Mesh(std::vector<Vertex> const & vertices,
-		std::vector<GLuint> const & indices,
-		std::map<GLuint, std::string> const & textures);
+	Mesh(std::vector<Vertex> const & vertices,std::vector<GLuint> const & indices, std::map<GLuint, std::string> const & textures);
 
 	// Public Member Functions
 	void draw(Shader& shader);

@@ -11,7 +11,7 @@ Terrain::Terrain()
 
 void Terrain::Bind()
 {
-	texture1->Bind(0);
+	texture1->Bind(4);
 	texture2->Bind(1);
 	blendMap->Bind(2);
 	specularTexture->Bind(3);
@@ -19,7 +19,7 @@ void Terrain::Bind()
 
 void Terrain::BindUniforms(Shader & shader)
 {
-	shader.SetUniform1i("material.diffuse", 0);
+	shader.SetUniform1i("material.diffuse", 4);
 	shader.SetUniform1i("material.diffuse2", 1);
 	shader.SetUniform1i("material.blendMap", 2);
 	shader.SetUniform1i("material.specular", 3);

@@ -5,6 +5,8 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb\stb_image_write.h>
 
+
+
 TerrainGenerator::TerrainGenerator(int fullVertexCount, int vertexCount, int size, int seed, float persistence, float frequency, float amplitude, int octaves) : fullVertexCount(fullVertexCount), size(size), vertexCount(vertexCount)
 {
 	perlin.Set(persistence, frequency, amplitude, octaves, seed);
@@ -16,8 +18,9 @@ void TerrainGenerator::Generate(std::vector<float> &vert, std::vector<unsigned i
 	for (int i = 0; i < vertexCount; i++) {
 		for (int j = 0; j < vertexCount; j++) {
 			vert.push_back((float)j / ((float)vertexCount - 1) * size);
-			vert.push_back(perlin.GetHeight(j, i));
-			vert.push_back((float)i / ((float)vertexCount - 1) * size);
+			float noise= perlin.GetHeight(j, i);
+			vert.push_back(noise);
+			vert.push_back((float)i / ((float)vertexCount - 1) * size);			
 			glm::vec3 normal = calculateNormal(j, i);
 			vert.push_back(normal.x);
 			vert.push_back(normal.y);

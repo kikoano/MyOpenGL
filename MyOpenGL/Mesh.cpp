@@ -1,10 +1,8 @@
 // Preprocessor Directives
 //#define STB_IMAGE_IMPLEMENTATION
 
-// Local Headers
 #include "Mesh.h"
 #include "main.h"
-// System Headers
 #include <stb/stb_image.h>
 
 // Define Namespace
@@ -21,9 +19,7 @@ Mesh::Mesh(std::string const & filename) : Mesh()
 	else parse(filename.substr(0, index), scene->mRootNode, scene);
 }
 
-Mesh::Mesh(std::vector<Vertex> const & vertices,
-	std::vector<GLuint> const & indices,
-	std::map<GLuint, std::string> const & textures)
+Mesh::Mesh(std::vector<Vertex> const & vertices, std::vector<GLuint> const & indices, std::map<GLuint, std::string> const & textures)
 	: mIndices(indices)
 	, mVertices(vertices)
 	, mTextures(textures)
@@ -114,17 +110,15 @@ void Mesh::parse(std::string const & path, aiMesh const * mesh, aiScene const * 
 	auto specular = process(path, scene->mMaterials[mesh->mMaterialIndex], aiTextureType_SPECULAR);
 	textures.insert(diffuse.begin(), diffuse.end());
 	textures.insert(specular.begin(), specular.end());
-	for (auto const&[key, val] : textures) {
+	/*for (auto const&[key, val] : textures) {
 		std::cout << val << std::endl;
-	}
+	}*/
 
 	// Create New Mesh Node
 	mSubMeshes.push_back(std::unique_ptr<Mesh>(new Mesh(vertices, indices, textures)));
 }
 
-std::map<GLuint, std::string> Mesh::process(std::string const & path,
-	aiMaterial * material,
-	aiTextureType type)
+std::map<GLuint, std::string> Mesh::process(std::string const & path, aiMaterial * material, aiTextureType type)
 {
 	std::map<GLuint, std::string> textures;
 	for (unsigned int i = 0; i < material->GetTextureCount(type); i++)
@@ -137,7 +131,6 @@ std::map<GLuint, std::string> Mesh::process(std::string const & path,
 		// Load the Texture Image from File
 		aiString str; material->GetTexture(type, i, &str);
 		std::string filename = str.C_Str(); int width, height, channels;
-		std::cout << filename << std::endl;
 		filename = RESOURCES_PATH + "Models\\" + path + "\\" + filename;
 		unsigned char * image = stbi_load(filename.c_str(), &width, &height, &channels, 0);
 		if (!image) fprintf(stderr, "%s %s\n", "Failed to Load Texture", filename.c_str());
