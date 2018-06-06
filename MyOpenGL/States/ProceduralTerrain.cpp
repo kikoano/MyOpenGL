@@ -5,6 +5,8 @@ void ProceduralTerrain::Init()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	camera = new Camera(glm::vec3(0.0f, 0.0f, 0.0f), true);
 	camera->SetMovementSpeed(imGuiVars.cameraSpeed);
@@ -12,10 +14,9 @@ void ProceduralTerrain::Init()
 
 	imGuiVars.vertexCount = pow(2, imGuiVars.vertexCount);
 	imGuiVars.vertexFull = pow(2, imGuiVars.vertexFull);
-	
+
 	generator = new TerrainGenerator(imGuiVars.vertexCount, imGuiVars.vertexCount, imGuiVars.size, imGuiVars.randomseed, imGuiVars.persistence, imGuiVars.frequency, imGuiVars.amplitude, imGuiVars.octaves);
 	generator->Generate(vertices, indices);
-
 	lightingShader = new Shader("Terrain.vert", "Terrain.frag");
 	lampShader = new Shader("lampColor.vert", "lampColor.frag");
 
@@ -52,6 +53,10 @@ void ProceduralTerrain::Init()
 	lightVAO->Unbind();
 	vb->Unblind();
 	ib->Unblind();
+	GenerateTrees();
+	for (auto& tree : trees) {
+		tree->Init();
+	}
 }
 
 
@@ -116,15 +121,36 @@ void ProceduralTerrain::RenderGui(StateManager* stateManager) {
 		material->Bind();
 		lightingShader->Bind();
 		material->BindUniforms(*lightingShader);
+		GenerateTrees();
 	}
 	ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 	//::End();
+}
+
+void ProceduralTerrain::GenerateTrees()
+{
+	trees.clear();
+		for (int i = 0; i < imGuiVars.vertexCount; i++) {
+			for (int j = 0; j < imGuiVars.vertexCount; j++) {
+				double noise = generator->GetPerlinNoise().GetHeight(j, i);
+				if (noise * 60 < 0) {
+					if (rand() % 1000 == 999) {
+						int type = rand() % 6;
+						float offset = sqrt(imGuiVars.vertexCount) / 4;
+						trees.push_back(std::make_unique<Tree>(static_cast<Tree::Type>(type), glm::vec3((float)j / ((float)imGuiVars.vertexCount /5) * imGuiVars.size, noise*offset*1.3f, (float)i / ((float)imGuiVars.vertexCount / 5) * imGuiVars.size)));
+					}
+				}
+			}
+		}
 }
 
 void ProceduralTerrain::Update(StateManager* stateManager, double delta)
 {
 	camera->Update(delta);
 	camera->SetMovementSpeed(imGuiVars.cameraSpeed);
+	for (auto &tree : trees) {
+		tree->Update(delta);
+	}
 	//modelPlate = glm::translate(modelPlate,glm::vec3(0.0f,0.0f, delta));
 }
 
@@ -165,6 +191,10 @@ void ProceduralTerrain::Render(StateManager* stateManager)
 	lampShader->SetUniformMatrix4fv("model", modelLamp);
 
 	renderer.RenderArrays(*lightVAO, 3, *lampShader);
+	for (auto &tree : trees) {
+		tree->UpdateProView(projection, view);
+		tree->Render();
+	}
 
 
 

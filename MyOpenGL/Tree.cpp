@@ -26,7 +26,7 @@ void Tree::UpdateProView(glm::mat4 projection, glm::mat4 view)
 }
 void Tree::Init()
 {
-	shaderModel = glm::scale(shaderModel,glm::vec3(0.1f, 0.1f, 0.1f));
+	shaderModel = glm::scale(shaderModel,glm::vec3(0.2f, 0.2f, 0.2f));
 	shaderModel = glm::translate(shaderModel, position);
 }
 
@@ -36,6 +36,7 @@ void Tree::Update(double delta)
 	shader.SetUniformMatrix4fv("projection", projection);
 	shader.SetUniformMatrix4fv("view", view);
 	shader.SetUniformMatrix4fv("model", shaderModel);
+	shader.Unbind();
 }
 
 void Tree::Render()
