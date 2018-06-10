@@ -54,7 +54,8 @@ int main(int argc, char * argv[]) {
 	std::cout << "2.Modern OpenGL 2D" << std::endl;
 	std::cout << "3.Modern OpenGL 3D" << std::endl;
 	std::cout << "4.Modern Advanced OpenGL 3D" << std::endl;
-	while (glVersion == 0)
+	std::cout << "5.Procedural Terrian Generation" << std::endl;
+	while (glVersion < 1 || glVersion >5)
 		std::cin >> glVersion;
 	system("cls");
 
@@ -87,6 +88,14 @@ int main(int argc, char * argv[]) {
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		std::cout << "Modern Advanced OpenGL 3D" << std::endl;
+	}
+	else if (glVersion == 5) {
+		WIDTH = 1280;
+		HEIGHT = 720;
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		std::cout << "Procedural Terrian Generation" << std::endl;
 	}
 
 	 lastX = WIDTH / 2.0f;
@@ -125,7 +134,10 @@ int main(int argc, char * argv[]) {
 
 	//State Manager
 	stateManager.Init();
-	stateManager.PushState(new TestState());
+	if (glVersion == 5)
+		stateManager.PushState(new ProceduralTerrain());
+	else
+		stateManager.PushState(new TestState());
 
 	//imgui init
 	ImGui::CreateContext();
@@ -219,7 +231,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 				stateManager.ChangeState(new BallBounceState());
 			}
 			else if (glVersion == 4) {
-				stateManager.ChangeState(new ProceduralTerrain());
+				stateManager.ChangeState(new ModelState());
 			}
 		}
 		if (key == GLFW_KEY_4 && action == GLFW_PRESS) {
@@ -230,9 +242,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 			}
 			else if (glVersion == 3) {
 				stateManager.ChangeState(new CameraState());
-			}
-			else if (glVersion == 4) {
-				stateManager.ChangeState(new ModelState());
 			}
 			
 		}

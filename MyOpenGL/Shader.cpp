@@ -72,7 +72,6 @@ Shader::Shader(const std::string& vertexShaderSource, const std::string& fragmen
 }
 
 Shader::~Shader(){
-	std::cout << "Shader deleted "<< std::endl;
 	glDeleteProgram(program);
 }
 

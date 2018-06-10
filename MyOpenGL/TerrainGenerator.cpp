@@ -5,15 +5,11 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb\stb_image_write.h>
 
-
-
-TerrainGenerator::TerrainGenerator(int fullVertexCount, int vertexCount, int size, int seed, float persistence, float frequency, float amplitude, int octaves) : fullVertexCount(fullVertexCount), size(size), vertexCount(vertexCount)
+TerrainGenerator::TerrainGenerator()
 {
-	perlin.Set(persistence, frequency, amplitude, octaves, seed);
-	createBlendMap();
 }
 
-void TerrainGenerator::Generate(std::vector<float> &vert, std::vector<unsigned int> &indi)
+void TerrainGenerator::Generate(std::vector<float> &vert, std::vector<unsigned int> &indi,int vertexCount, int size)
 {
 	for (int i = 0; i < vertexCount; i++) {
 		for (int j = 0; j < vertexCount; j++) {
@@ -46,12 +42,18 @@ void TerrainGenerator::Generate(std::vector<float> &vert, std::vector<unsigned i
 	}
 }
 
-void TerrainGenerator::createBlendMap()
+void TerrainGenerator::SetPerlin(int vertexCount, int size,int seed, float persistence, float frequency, float amplitude, int octaves)
 {
-	int dataSize = fullVertexCount * fullVertexCount * 3;
+	perlin.Set(persistence, frequency, amplitude, octaves, seed);
+	createBlendMap(vertexCount, size);
+}
+
+void TerrainGenerator::createBlendMap(int vertexCount, int size)
+{
+	int dataSize = vertexCount * vertexCount * 3;
 	uint8_t *data = new uint8_t[dataSize];
-	for (unsigned int y = 0; y < fullVertexCount; y++) {
-		for (unsigned int x = 0; x < fullVertexCount; x++) {
+	for (unsigned int y = 0; y < vertexCount; y++) {
+		for (unsigned int x = 0; x < vertexCount; x++) {
 			double noise = perlin.GetHeight(y, x);
 			int color= noise * 60;
 			if (color > 255)
@@ -59,13 +61,13 @@ void TerrainGenerator::createBlendMap()
 			if (color < 0)
 				color = 0;
 			for (int i = x * 3; i < (x * 3) + 3; i++) {
-				data[i + y * fullVertexCount *3] = color;
+				data[i + y * vertexCount *3] = color;
 			}
 
 		}
 	}
 
-	stbi_write_bmp((RESOURCES_PATH + "Textures/Maps/terrainBlendMap.bmp").c_str(), fullVertexCount, fullVertexCount, 3, data);
+	stbi_write_bmp((RESOURCES_PATH + "Textures/Maps/terrainBlendMap.bmp").c_str(), vertexCount, vertexCount, 3, data);
 	delete[] data;
 }
 

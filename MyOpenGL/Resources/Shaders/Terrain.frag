@@ -20,11 +20,14 @@ struct Light{
 in vec2 TexCoords;
 in vec3 Normal;  
 in vec3 FragPos;  
+in float visibility;
+
   
 uniform vec3 viewPos; 
 uniform Material material;
 uniform Light light;
 uniform int scaleTiles;
+uniform vec3 skyColor;
 
 void main()
 {
@@ -58,5 +61,6 @@ void main()
 	
 	vec3 result = ambient + diffuse + specular;
 	FragColor = vec4(result, 1.0);
+	FragColor = mix(vec4(skyColor,1.0), FragColor, visibility);
 } 
 

@@ -14,27 +14,23 @@ private:
 	const std::string type6 = "f_tree6\\obj__tree6.obj";
 
 	std::string type;
-	Mesh *model;
+	std::unique_ptr<Mesh> model;
 	Shader shader = Shader("model.vert", "model.frag");
-	static glm::mat4 projection;
-	static glm::mat4 view;
 	glm::mat4 shaderModel = glm::mat4(1.0f);
 public:
 	enum Type {
-		TYPE1 =0,
-		TYPE2=1,
-		TYPE3=2,
-		TYPE4=3,
-		TYPE5=4,
-		TYPE6=5,
+		TYPE1 = 0,
+		TYPE2 = 1,
+		TYPE3 = 2,
+		TYPE4 = 3,
+		TYPE5 = 4,
+		TYPE6 = 5,
 	};
-	/*Tree(const Tree&) = delete;
-	Tree& operator=(const Tree&) = delete;*/
-	Tree(Type type,glm::vec3 position);
-	static void UpdateProView(glm::mat4 projection, glm::mat4 view);
+	Tree(Type type, glm::vec3 position);
 	void Init();
 	void Update(double delta);
 	void Render();
+	void SetScale(float size);
 	~Tree();
 };
 

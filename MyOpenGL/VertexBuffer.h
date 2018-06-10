@@ -5,6 +5,7 @@ private:
 	unsigned int rendererID;
 	bool drawStatic;
 public:
+	VertexBuffer();
 	VertexBuffer(const void* data, unsigned int size, bool drawStatic = true);
 	~VertexBuffer();
 

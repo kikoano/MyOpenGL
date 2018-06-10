@@ -3,20 +3,16 @@
 #include <vector>
 #include <glm\glm.hpp>
 #include "PerlinNoise.h"
-#include "Tree.h"
 class TerrainGenerator
 {
 private:
 	PerlinNoise perlin;
-	int seed;
-	int size;
-	int fullVertexCount;
-	int vertexCount;
 	glm::vec3 calculateNormal(int x, int z);
-	void createBlendMap();
+	void createBlendMap(int vertexCount, int size);
 public:
-	TerrainGenerator(int fullVertexCount, int vertexCount, int size, int seed, float persistence, float frequency, float amplitude, int octaves);
-	void Generate(std::vector<float> &vert, std::vector<unsigned int> &indi);
+	TerrainGenerator();
+	void Generate(std::vector<float> &vert, std::vector<unsigned int> &indi, int vertexCount, int size);
+	void SetPerlin(int vertexCount, int size,int seed, float persistence, float frequency, float amplitude, int octaves);
 	PerlinNoise GetPerlinNoise(){return perlin;}
 
 	~TerrainGenerator();

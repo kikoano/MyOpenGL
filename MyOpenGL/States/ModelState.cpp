@@ -8,8 +8,8 @@ void ModelState::Init()
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	model = glm::translate(model, modelPos);
-	tree.Init();
-	tree2.Init();
+	tree1->Init();
+	skybox.Init();
 }
 
 
@@ -47,8 +47,8 @@ void ModelState::RenderGui(StateManager* stateManager) {
 void ModelState::Update(StateManager* stateManager, double delta)
 {
 	camera.Update(delta);
-	tree.Update(delta);
-	tree2.Update(delta);
+	tree1->Update(delta);
+	skybox.Update(delta);
 }
 
 void ModelState::Render(StateManager* stateManager)
@@ -59,7 +59,7 @@ void ModelState::Render(StateManager* stateManager)
 	// view/projection transformations
 	glm::mat4 projection = glm::perspective(glm::radians(camera.GetZoom()), (float)WIDTH / (float)HEIGHT, 0.1f, 100.0f);
 	glm::mat4 view = camera.GetViewMatrix();
-	Tree::UpdateProView(projection, view);
+	Entity::UpdateProView(projection, view);
 
 	shader.SetUniformMatrix4fv("projection", projection);
 	shader.SetUniformMatrix4fv("view", view);
@@ -69,11 +69,10 @@ void ModelState::Render(StateManager* stateManager)
 
 	shader.SetUniformMatrix4fv("model", model);
 	//myMesh->draw(shader);
-	tree.Render();
-	tree2.Render();
+	tree1->Render();
+	skybox.Render();
 }
 
 ModelState::~ModelState() {
 	shader.Unbind();
-	delete myMesh;
 }

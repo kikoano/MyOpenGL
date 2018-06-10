@@ -134,6 +134,7 @@
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Grass.cpp" />
     <ClCompile Include="Materials\Box.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="Light.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="PerlinNoise.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="States\BallBounceState.cpp" />
     <ClCompile Include="States\CameraState.cpp" />
     <ClCompile Include="States\ColorCubeState.cpp" />
@@ -173,6 +175,7 @@
     <ClCompile Include="States\YingYangLegacyState.cpp" />
     <ClCompile Include="States\TransformState.cpp" />
     <ClCompile Include="TerrainGenerator.cpp" />
+    <ClCompile Include="TerrainMesh.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Vendor\imgui\imgui.cpp" />
@@ -187,6 +190,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="glitter.h" />
+    <ClInclude Include="Grass.h" />
     <ClInclude Include="Materials\Box.h" />
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="Light.h" />
@@ -197,6 +201,7 @@
     <ClInclude Include="PerlinNoise.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="States\BallBounceState.h" />
     <ClInclude Include="States\CameraState.h" />
     <ClInclude Include="States\ColorCubeState.h" />
@@ -228,6 +233,7 @@
     <ClInclude Include="States\YingYangLegacyState.h" />
     <ClInclude Include="States\TransformState.h" />
     <ClInclude Include="TerrainGenerator.h" />
+    <ClInclude Include="TerrainMesh.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="Vendor\imgui\imconfig.h" />
@@ -242,6 +248,7 @@
     <ClInclude Include="VertexBufferLayout.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assimp-vc140-mt.dll" />
     <None Include="Resources\Shaders\2.2.basic_lighting.fs" />
     <None Include="Resources\Shaders\2.2.basic_lighting.vs" />
     <None Include="Resources\Shaders\2.2.lamp.fs" />
@@ -267,8 +274,10 @@
     <None Include="Resources\Shaders\Projection3D.vert" />
     <None Include="Resources\Shaders\Projection3DLight.frag" />
     <None Include="Resources\Shaders\Projection3DLight.vert" />
-    <None Include="Resources\Shaders\Terrain.frag" />
-    <None Include="Resources\Shaders\Terrain.vert" />
+    <None Include="Resources\Shaders\skybox.frag" />
+    <None Include="Resources\Shaders\skybox.vert" />
+    <None Include="Resources\Shaders\terrain.frag" />
+    <None Include="Resources\Shaders\terrain.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\awesomeface.png" />
@@ -279,6 +288,13 @@
     <Image Include="Resources\Textures\grass.png" />
     <Image Include="Resources\Textures\grass3.png" />
     <Image Include="Resources\Textures\grassHD.jpg" />
+    <Image Include="Resources\Textures\Skybox\back.jpg" />
+    <Image Include="Resources\Textures\Skybox\bottom.jpg" />
+    <Image Include="Resources\Textures\Skybox\front.jpg" />
+    <Image Include="Resources\Textures\Skybox\left.jpg" />
+    <Image Include="Resources\Textures\Skybox\right.jpg" />
+    <Image Include="Resources\Textures\Skybox\top.jpg" />
+    <Image Include="Resources\Textures\snow.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

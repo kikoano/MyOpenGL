@@ -4,7 +4,7 @@
 Terrain::Terrain()
 {
 	texture1 = new Texture(RESOURCES_PATH + "Textures\\grass.png",false);
-	texture2 = new Texture(RESOURCES_PATH + "Textures\\dirt.png", false);
+	texture2 = new Texture(RESOURCES_PATH + "Textures\\snow.jpg", false);
 	blendMap = new Texture(RESOURCES_PATH + "Textures\\Maps\\terrainBlendMap.bmp", false,true);
 	specularTexture = new Texture(RESOURCES_PATH + "Textures\\grass.png", false);
 }
