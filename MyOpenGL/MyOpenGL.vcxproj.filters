@@ -171,6 +171,15 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Grass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glitter.h">
@@ -341,6 +350,15 @@
     <ClInclude Include="Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Grass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainMesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\BasicColor.frag" />
@@ -366,10 +384,13 @@
     <None Include="Resources\Shaders\lampColor.vert" />
     <None Include="Resources\Shaders\MaterialLighting.frag" />
     <None Include="Resources\Shaders\MaterialLighting.vert" />
-    <None Include="Resources\Shaders\Terrain.frag" />
-    <None Include="Resources\Shaders\Terrain.vert" />
     <None Include="Resources\Shaders\model.frag" />
     <None Include="Resources\Shaders\model.vert" />
+    <None Include="assimp-vc140-mt.dll" />
+    <None Include="Resources\Shaders\skybox.vert" />
+    <None Include="Resources\Shaders\skybox.frag" />
+    <None Include="Resources\Shaders\terrain.vert" />
+    <None Include="Resources\Shaders\terrain.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\awesomeface.png">
@@ -394,6 +415,27 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\grass.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Skybox\back.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Skybox\bottom.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Skybox\front.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Skybox\left.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Skybox\right.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Skybox\top.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\snow.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

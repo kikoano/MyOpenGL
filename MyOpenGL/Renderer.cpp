@@ -2,16 +2,14 @@
 
 
 void Renderer::Render(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const {
-
 	shader.Bind();
 	va.Bind();
-	ib.Bind();
+	ib.Bind(); // needs to be removed in future
 	glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
 }
 void Renderer::Render(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, unsigned int type) const {
 	shader.Bind();
 	va.Bind();
-	ib.Bind();
 	glDrawElements(type, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
 }
 void Renderer::RenderArrays(const VertexArray& va,const unsigned int count, const Shader& shader) const {

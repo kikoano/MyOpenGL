@@ -1,7 +1,6 @@
 #include "Tree.h"
 
-glm::mat4 Tree::projection;
-glm::mat4 Tree::view;
+
 Tree::Tree(Type type, glm::vec3 position):Entity(position)
 {
 	if (type == TYPE1) 
@@ -16,17 +15,11 @@ Tree::Tree(Type type, glm::vec3 position):Entity(position)
 		this->type = type5;
 	else if (type == TYPE6)
 		this->type = type6;
-	model = new Mesh(this->type);
+	model = std::make_unique<Mesh>(this->type);
 
-}
-void Tree::UpdateProView(glm::mat4 projection, glm::mat4 view)
-{
-	Tree::projection = projection;
-	Tree::view = view;
 }
 void Tree::Init()
 {
-	shaderModel = glm::scale(shaderModel,glm::vec3(0.2f, 0.2f, 0.2f));
 	shaderModel = glm::translate(shaderModel, position);
 }
 
@@ -36,6 +29,7 @@ void Tree::Update(double delta)
 	shader.SetUniformMatrix4fv("projection", projection);
 	shader.SetUniformMatrix4fv("view", view);
 	shader.SetUniformMatrix4fv("model", shaderModel);
+	shader.SetUniform3fv("skyColor", glm::vec3(0.87f, 0.91f, 0.94f));
 	shader.Unbind();
 }
 
@@ -44,9 +38,17 @@ void Tree::Render()
 	model->draw(shader);
 }
 
+void Tree::SetScale(float size)
+{
+	float scale = (size) / 700.0f;
+	shaderModel = glm::translate(shaderModel, position);
+	shaderModel = glm::scale(shaderModel, glm::vec3(scale, scale, scale));
+	shaderModel = glm::translate(shaderModel, -position);
+}
+
 
 
 Tree::~Tree()
 {
-	delete model;
+
 }

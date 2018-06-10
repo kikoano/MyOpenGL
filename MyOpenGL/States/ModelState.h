@@ -3,16 +3,14 @@
 #include "..//Camera.h"
 #include "..//Mesh.h"
 #include "..//Tree.h"
+#include "../Skybox.h"
 class ModelState : public State
 {
 private:
+	Skybox skybox;
 	Shader shader = Shader("model.vert", "model.frag");
 	Camera camera = Camera(glm::vec3(0.0f, 0.0f, 3.0f), true);
-	Mesh *myMesh = new Mesh("f_tree1\\obj__tree1.obj");
-	Tree tree = Tree(Tree::TYPE1, glm::vec3(0.0f, 0.0f, 0.0f));
-	Tree tree2 = Tree(Tree::TYPE2, glm::vec3(0.0f, 0.0f, 100.0f));
-	//Model myModel = Model(RESOURCES_PATH + "Models\\nanosuit\\nanosuit.obj");
-	//Model myModel2 =Model(RESOURCES_PATH + "Models\\Tree\\Tree.obj");
+	std::unique_ptr<Tree> tree1 = std::make_unique<Tree>(Tree::TYPE1, glm::vec3(0.0f, 0.0f, 0.0f));
 	glm::mat4 model = glm::mat4(1.0f);
 	glm::mat4 model2 = glm::mat4(1.0f);
 	glm::mat4 view;

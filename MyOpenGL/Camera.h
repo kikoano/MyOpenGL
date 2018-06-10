@@ -65,5 +65,8 @@ public:
 	inline void SetMovementSpeed(float movementSpeed) {
 		this->movementSpeed = movementSpeed;
 	}
+	inline void SetFOV(float fov) {
+		zoom = fov;
+	}
 };
 

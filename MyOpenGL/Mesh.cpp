@@ -3,6 +3,7 @@
 
 #include "Mesh.h"
 #include "main.h"
+#include "Texture.h"
 #include <stb/stb_image.h>
 
 // Define Namespace
@@ -132,33 +133,38 @@ std::map<GLuint, std::string> Mesh::process(std::string const & path, aiMaterial
 		aiString str; material->GetTexture(type, i, &str);
 		std::string filename = str.C_Str(); int width, height, channels;
 		filename = RESOURCES_PATH + "Models\\" + path + "\\" + filename;
-		unsigned char * image = stbi_load(filename.c_str(), &width, &height, &channels, 0);
-		if (!image) fprintf(stderr, "%s %s\n", "Failed to Load Texture", filename.c_str());
+		if (Texture::LoadedTextures.count(filename) == 0) {
+			unsigned char * image = stbi_load(filename.c_str(), &width, &height, &channels, 0);
+			if (!image) fprintf(stderr, "%s %s\n", "Failed to Load Texture", filename.c_str());
 
-		// Set the Correct Channel Format
-		switch (channels)
-		{
-		case 1: format = GL_ALPHA;     break;
-		case 2: format = GL_LUMINANCE; break;
-		case 3: format = GL_RGB;       break;
-		case 4: format = GL_RGBA;      break;
+			// Set the Correct Channel Format
+			switch (channels)
+			{
+			case 1: format = GL_ALPHA;     break;
+			case 2: format = GL_LUMINANCE; break;
+			case 3: format = GL_RGB;       break;
+			case 4: format = GL_RGBA;      break;
+			}
+
+			// Bind Texture and Set Filtering Levels
+			glGenTextures(1, &texture);
+			glBindTexture(GL_TEXTURE_2D, texture);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexImage2D(GL_TEXTURE_2D, 0, format,
+				width, height, 0, format, GL_UNSIGNED_BYTE, image);
+			glGenerateMipmap(GL_TEXTURE_2D);
+
+			// Release Image Pointer and Store the Texture
+			stbi_image_free(image);
+			if (type == aiTextureType_DIFFUSE)  mode = "diffuse";
+			else if (type == aiTextureType_SPECULAR) mode = "specular";
+			textures.insert(std::make_pair(texture, mode));
+			Texture::LoadedTextures[filename] = TextureInfo{ texture,mode };
 		}
+		textures.insert(std::make_pair(Texture::LoadedTextures[filename].texture, Texture::LoadedTextures[filename].mode));
 
-		// Bind Texture and Set Filtering Levels
-		glGenTextures(1, &texture);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexImage2D(GL_TEXTURE_2D, 0, format,
-			width, height, 0, format, GL_UNSIGNED_BYTE, image);
-		glGenerateMipmap(GL_TEXTURE_2D);
-
-		// Release Image Pointer and Store the Texture
-		stbi_image_free(image);
-		if (type == aiTextureType_DIFFUSE)  mode = "diffuse";
-		else if (type == aiTextureType_SPECULAR) mode = "specular";
-		textures.insert(std::make_pair(texture, mode));
 	}   return textures;
 }
