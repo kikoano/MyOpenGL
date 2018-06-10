@@ -2,7 +2,7 @@
 ## Computer graphics labs
 Models download <a href="https://drive.google.com/file/d/1e8Bkbjby-ub8G93fnDDYvDT6CVysK7O4/view?usp=sharing">link<a/>.
 <br>
-Enter <kbd>1</kbd>, <kbd>2</kbd>, <kbd>3</kbd> or <kbd>4</kbd> for Legacy OpenGL, Modern OpenGL 2D, Modern OpenGL 3D, Modern Advanced OpenGL 3D or Procedural Terrian Generation.
+Enter <kbd>1</kbd>, <kbd>2</kbd>, <kbd>3</kbd>, <kbd>4</kbd> or <kbd>5</kbd> for Legacy OpenGL, Modern OpenGL 2D, Modern OpenGL 3D, Modern Advanced OpenGL 3D or Procedural Terrian Generation.
 <br>
 Press <kbd>1</kbd>-<kbd>9</kbd> to change state.
 <br>
